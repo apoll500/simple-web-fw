@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $reader.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9InJlYWRlciI7CiAgICAkcGF0aD0icmVhZGVyLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $reader/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzIzIjsKICAgICRkZXNjcmlwdGlvbj0iIjsKICAgICRmbGFnPSIxIjsKICAgICRwYXRoPSJ2MDEvIjsKICAgICR2ZXJzaW9uPSJ2MDEiOwp9Cg==";
+}
+DEF setup:SETTINGS
+{
+    $base="jstools";
+    $baseman-location="jstools/reader/v01";
+    $file-system-path="reader/v01/";
+    $package-path="simple-web-fw/jstools--reader--v01/";
+}
