@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $results_nav.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSJyZXN1bHRzX25hdiI7CiAgICAkZmxhZz0iMSI7CiAgICAkbmFtZT0icmVzdWx0c19uYXYiOwogICAgJHBhdGg9InJlc3VsdHNfbmF2LyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $results_nav/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzI0IjsKICAgICRkZXNjcmlwdGlvbj0iIjsKICAgICRmbGFnPSIxIjsKICAgICRwYXRoPSJ2MDEvIjsKICAgICR2ZXJzaW9uPSJ2MDEiOwp9Cg==";
+}
+DEF setup:SETTINGS
+{
+    $base="elem";
+    $baseman-location="elem/results_nav/v01";
+    $file-system-path="results_nav/v01/";
+    $package-path="simple-web-fw/elem--results_nav--v01/";
+}

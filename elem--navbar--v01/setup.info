@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $navbar.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSJuYXZiYXIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9Im5hdmJhciI7CiAgICAkcGF0aD0ibmF2YmFyLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $navbar/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzI0IjsKICAgICRkZXNjcmlwdGlvbj0iIjsKICAgICRmbGFnPSIxIjsKICAgICRwYXRoPSJ2MDEvIjsKICAgICR2ZXJzaW9uPSJ2MDEiOwp9Cg==";
+}
+DEF setup:SETTINGS
+{
+    $base="elem";
+    $baseman-location="elem/navbar/v01";
+    $file-system-path="navbar/v01/";
+    $package-path="simple-web-fw/elem--navbar--v01/";
+}

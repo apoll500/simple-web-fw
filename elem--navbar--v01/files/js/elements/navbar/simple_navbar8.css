@@ -1,0 +1,9 @@
+
+div.topnavbar{width:100%;margin-top:0px;margin-bottom:0px;padding:0px;color:#000000;font-weight:bold;background-color:#AADDFF;font-family:arial;font-size:14pt;border-bottom:solid 2px #FF7733;}
+div.topnavbar_inner{padding:20px;}
+a.topnav{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#AADDFF;border-radius:4px;}
+a.topnav:hover{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#CCEEFF;border-radius:4px;}
+a.topnav:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;}
+a.topnav2{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFAA77;border-radius:4px;}
+a.topnav2:hover{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFCCAA;border-radius:4px;}
+a.topnav2:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;}

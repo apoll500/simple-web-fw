@@ -1,0 +1,13 @@
+
+div.flap_box_box{margin-left:0px;margin-top:20px;padding:0px;height:42px;overflow:hidden;color:#001133;}
+div.flap_box_title{margin:0px;padding:0px;font-family:arial;font-size:12pt;color:#003377;background-color:#DDDDDD;border:solid 1px #000000;border-radius:5px;}
+div.flap_box_title_hover{margin:0px;padding:0px;font-family:arial;font-size:12pt;color:#003377;background-color:#FFFFAA;border:solid 1px #000000;box-shadow:3px 3px 2px 2px #CCCCCC;border-radius:5px;}
+div.flap_box_content{margin-left:35px;padding:5px;min-height:100px;overflow:auto;font-family:arial;font-size:11pt;color:#000000;border-left:solid 1px #000000;}
+
+
+
+div.flap_box_title_f0{width:400px;padding:10px;float:left;overflow:hidden;}
+div.flap_box_title_f1{width:100px;padding-left:3px;float:left;text-align:center;overflow:hidden;}
+div.flap_box_title_f2{width:100px;padding-left:3px;float:left;text-align:center;overflow:hidden;}
+div.flap_box_title_f3{width:100px;padding-left:3px;float:left;text-align:center;overflow:hidden;}
+div.flap_box_title_f4{width:70px;padding-left:3px;float:left;text-align:center;overflow:hidden;}

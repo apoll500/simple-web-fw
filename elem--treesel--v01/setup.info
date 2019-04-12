@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $treesel.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9InRyZWVzZWwiOwogICAgJHBhdGg9InRyZWVzZWwvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $treesel/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="elem";
+    $baseman-location="elem/treesel/v01";
+    $file-system-path="treesel/v01/";
+    $package-path="simple-web-fw/elem--treesel--v01/";
+}

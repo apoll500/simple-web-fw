@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="js/elements/base.js"></script>
+        <script src="js/animate/animate.js"></script>
+
+        <link rel="stylesheet" href="js/elements/flap_box/flap_box.css">
+        <script src="js/elements/flap_box/flap_box.js"></script>
+    </head>
+    <body
+        onmousemove="main_onMousemove(event)"
+        onmousedown="main_onMousedown(event)"
+        onmouseup="main_onMouseup(event)"
+        onclick="main_onClick(event)"
+        ondblclick="main_onDblClick(event)"
+        onkeydown="main_onKeydown(event)"
+        onkeyup="main_onKeyup(event)"
+        onkeypress="main_onKeypress(event)"
+        onscroll="main_onScroll(event)"
+        onresize="main_onResize(event)"
+        >
+        <div id="MAIN"></div>
+        <script>
+            var m=document.getElementById("MAIN");
+            new flap_box(m,24,200);
+            new flap_box(m,24,200);
+            new flap_box(m,24,200);
+        </script>
+    </body>
+</html>

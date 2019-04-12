@@ -1,0 +1,7 @@
+
+div.botbot{width:100%;height:300px;margin:0px;padding:0px;background-color:#3377AA;font-family:arial;font-size:11pt;color:#FFFFFF;border-top:solid 2px #000000;}
+div.botcolumn{width:200px;margin:0px;padding:20px;float:left;font-family:arial;font-size:11pt;color:#DDEEFF;}
+a.footlink{text-decoration:underline;color:#DDEEFF;}
+a.footlink:hover{text-decoration:underline;color:#FFFFAA;}
+a.footlink:active{text-decoration:underline;color:#EEEEEE;}
+span.copyinfo{color:#DDDDDD;}

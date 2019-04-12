@@ -1,0 +1,5 @@
+
+div.flap_box_box{margin-left:5px;margin-top:2px;padding:0px;height:24px;overflow:hidden;color:#001133;background-color:#FFFFFF;border:solid 1px #3377AA;border-radius:4px;}
+div.flap_box_title{margin:3px;font-family:arial;font-size:12pt;font-weight:bold;color:#3377AA;background-color:#FFFFFF;}
+div.flap_box_title_hover{margin:3px;font-family:arial;font-size:12pt;font-weight:bold;color:#3377AA;background-color:#DDDDEE;}
+div.flap_box_content{margin:3px;padding:5px;min-height:150px;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFAA;}
