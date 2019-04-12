@@ -12,3 +12,5 @@ There are no other dependencies.
 All code is pure JS/PHP code.
 
 This project intentionally avoids all modern approaches to JS and rather follows a more old fashioned JS programming style. The reason for this is, to keep everything as simple as possible to allow the implementation of an lightweight browser, which then only will have to understand a very small subset of JavaScript.
+
+Code and documentation will follow ...
