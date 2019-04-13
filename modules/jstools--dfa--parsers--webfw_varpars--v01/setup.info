@@ -1,0 +1,14 @@
+DEF info-files:SETTINGS
+{
+    $dfa.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImRmYSI7CiAgICAkcGF0aD0iZGZhLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $dfa/parsers.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9InBhcnNlcnMiOwogICAgJHBhdGg9InBhcnNlcnMvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $dfa/parsers/webfw_varpars.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9IndlYmZ3X3ZhcnBhcnMiOwogICAgJHBhdGg9IndlYmZ3X3ZhcnBhcnMvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $dfa/parsers/webfw_varpars/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="jstools";
+    $baseman-location="jstools/dfa/parsers/webfw_varpars/v01";
+    $file-system-path="dfa/parsers/webfw_varpars/v01/";
+    $package-path="simple-web-fw/modules/jstools--dfa--parsers--webfw_varpars--v01/";
+}

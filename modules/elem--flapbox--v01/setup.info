@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $flapbox.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSJmbGFwYm94IjsKICAgICRmbGFnPSIxIjsKICAgICRuYW1lPSJmbGFwYm94IjsKICAgICRwYXRoPSJmbGFwYm94LyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $flapbox/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzI0IjsKICAgICRkZXNjcmlwdGlvbj0iIjsKICAgICRmbGFnPSIxIjsKICAgICRwYXRoPSJ2MDEvIjsKICAgICR2ZXJzaW9uPSJ2MDEiOwp9Cg==";
+}
+DEF setup:SETTINGS
+{
+    $base="elem";
+    $baseman-location="elem/flapbox/v01";
+    $file-system-path="flapbox/v01/";
+    $package-path="simple-web-fw/modules/elem--flapbox--v01/";
+}

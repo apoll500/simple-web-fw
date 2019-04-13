@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $loginbar.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSJsb2dpbmJhciI7CiAgICAkZmxhZz0iMSI7CiAgICAkbmFtZT0ibG9naW5iYXIiOwogICAgJHBhdGg9ImxvZ2luYmFyLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $loginbar/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzI0IjsKICAgICRkZXNjcmlwdGlvbj0iIjsKICAgICRmbGFnPSIxIjsKICAgICRwYXRoPSJ2MDEvIjsKICAgICR2ZXJzaW9uPSJ2MDEiOwp9Cg==";
+}
+DEF setup:SETTINGS
+{
+    $base="elem";
+    $baseman-location="elem/loginbar/v01";
+    $file-system-path="loginbar/v01/";
+    $package-path="simple-web-fw/modules/elem--loginbar--v01/";
+}

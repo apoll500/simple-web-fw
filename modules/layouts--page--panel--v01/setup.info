@@ -1,0 +1,13 @@
+DEF info-files:SETTINGS
+{
+    $page.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9InBhZ2UiOwogICAgJHBhdGg9InBhZ2UvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $page/panel.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9InBhbmVsIjsKICAgICRwYXRoPSJwYW5lbC8iOwogICAgJHJ1bj0iIjsKICAgICR0YXJnZXQ9IiI7Cn0K";
+    $page/panel/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="layouts";
+    $baseman-location="layouts/page/panel/v01";
+    $file-system-path="page/panel/v01/";
+    $package-path="simple-web-fw/modules/layouts--page--panel--v01/";
+}
