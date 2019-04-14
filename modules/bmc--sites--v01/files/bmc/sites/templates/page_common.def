@@ -1,0 +1,71 @@
+
+//MODULE::
+
+DEF WEBPAGE
+{
+}
+
+DEF TEXT
+{
+    title="@<@LANG>.title";
+    ptext="@<@LANG>.ptext";
+    title_textmode="@<@LANG>.title_textmode";
+    ptext_textmode="@<@LANG>.ptext_textmode";
+    //Common texts
+    de-at
+    {
+        title_textmode
+        {
+            ->
+            @parent.title
+            <--
+        }
+        ptext_textmode
+        {
+            ->
+            @parent.ptext
+            <--
+        }
+    }
+    en-us
+    {
+        title_textmode
+        {
+            ->
+            @parent.title
+            <--
+        }
+        ptext_textmode
+        {
+            ->
+            @parent.ptext
+            <--
+        }
+    }
+    full_text
+    {
+        ->
+        @title[text='#',end='
+        ']@ptext
+        <--
+    }
+    en-us
+    {
+        title="@de-at.title";
+        ptext
+        {
+            ->
+            This text is only availabe in german:
+            <hr>
+            @de-at.ptext
+            <--
+        }
+    }
+    textmode
+    {
+        ->
+        @title_textmode[text='#',end='
+        ']@ptext_textmode
+        <--
+    }
+}

@@ -1,30 +1,46 @@
 #!/bin/sh
 
-bmsetup pull modules/ base/anim_base/v01
-bmsetup pull modules/ base/elements_base/v01
-bmsetup pull modules/ base/http_base/v01
-bmsetup pull modules/ base/loadstat/v01
-bmsetup pull modules/ base/sysmod_box/v01
+counter=$((1))
 
-bmsetup pull modules/ elem/flapbox/v01
-bmsetup pull modules/ elem/foot/v01
-bmsetup pull modules/ elem/loginbar/v01
-bmsetup pull modules/ elem/main/v01
-bmsetup pull modules/ elem/navbar/v01
-bmsetup pull modules/ elem/results_nav/v01
-bmsetup pull modules/ elem/treesel/v01
-bmsetup pull modules/ elem/treeselfill/v01
+pull () {
+    printf "\033[%d;2;%d;%d;%dm\033[%d;2;%d;%d;%dm" 38 255 255 200 48 90 180 235
+    echo "                                                                     "
+    printf "\033[1A"
+    echo "[$counter:] $1"
+    printf "\033[0m"
+    bmsetup pull modules/ $1
+    counter=$(($counter+1))
+}
 
-bmsetup pull modules/ jstools/dfa/v01
-bmsetup pull modules/ jstools/dfa/parsers/webfw_varpars/v01
-bmsetup pull modules/ jstools/reader/v01
+pull base/anim_base/v01
+pull base/elements_base/v01
+pull base/http_base/v01
+pull base/loadstat/v01
+pull base/sysmod_box/v01
 
-bmsetup pull modules/ layouts/common/v01
-bmsetup pull modules/ layouts/elem/main/common/v01
-bmsetup pull modules/ layouts/elem/main/compact/v01
-bmsetup pull modules/ layouts/page/panel/v01
-bmsetup pull modules/ layouts/page/stdsite/v01
+pull bmc/sites/v01
 
-bmsetup pull modules/ phptools/dfa/v01
-bmsetup pull modules/ phptools/dfa/parsers/varpars/v01
-bmsetup pull modules/ phptools/reader/v01
+pull elem/flapbox/v01
+pull elem/foot/v01
+pull elem/loginbar/v01
+pull elem/main/v01
+pull elem/navbar/v01
+pull elem/results_nav/v01
+pull elem/treesel/v01
+pull elem/treeselfill/v01
+
+pull jstools/dfa/v01
+pull jstools/dfa/parsers/webfw_varpars/v01
+pull jstools/reader/v01
+
+pull layouts/common/v01
+pull layouts/elem/main/common/v01
+pull layouts/elem/main/compact/v01
+pull layouts/page/panel/v01
+pull layouts/page/stdsite/v01
+
+pull phptools/dfa/v01
+pull phptools/dfa/parsers/varpars/v01
+pull phptools/reader/v01
+
+pull system/api/v01

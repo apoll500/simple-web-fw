@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $api.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImFwaSI7CiAgICAkcGF0aD0iYXBpLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $api/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="system";
+    $baseman-location="system/api/v01";
+    $file-system-path="api/v01/";
+    $package-path="simple-web-fw/modules/system--api--v01/";
+}
