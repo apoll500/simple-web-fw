@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF odrvo:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="ODRVO-Info";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+        DEF en-us
+        {
+            title="ODRVO-Info";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

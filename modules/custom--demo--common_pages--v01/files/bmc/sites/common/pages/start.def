@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF start:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="Start";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+        DEF en-us
+        {
+            title="Start";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

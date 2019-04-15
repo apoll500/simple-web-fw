@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF bugs:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="Bugs";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+        DEF en-us
+        {
+            title="Bugs";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

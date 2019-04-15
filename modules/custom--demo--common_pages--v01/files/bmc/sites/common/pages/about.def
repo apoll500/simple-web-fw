@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF about:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="Über";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+        DEF en-us
+        {
+            title="About";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

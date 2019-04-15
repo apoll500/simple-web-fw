@@ -44,3 +44,9 @@ pull phptools/dfa/parsers/varpars/v01
 pull phptools/reader/v01
 
 pull system/api/v01
+
+pull custom/demo/common_all/v01
+pull custom/demo/common_hyperlinks/v01
+pull custom/demo/common_images/v01
+pull custom/demo/common_pages/v01
+pull custom/demo/email_texts/v01

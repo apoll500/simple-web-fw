@@ -1,0 +1,12 @@
+
+//MODULE::
+
+DEF GLOBAL_TEXTS
+{
+    DEF de-at
+    {
+    }
+    DEF en-us
+    {
+    }
+}

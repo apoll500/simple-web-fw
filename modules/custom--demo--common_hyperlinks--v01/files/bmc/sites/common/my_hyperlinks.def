@@ -1,0 +1,25 @@
+
+DEF impressum:HYPERLINK.load_page
+{
+    de-at
+    {
+        title="Impressum";
+    }
+    en-us
+    {
+        title="impress";
+    }
+    token="impre";
+}
+DEF contact:HYPERLINK.load_page
+{
+    de-at
+    {
+        title="Kontaktinformationen";
+    }
+    en-us
+    {
+        title="contact information";
+    }
+    token="contact";
+}

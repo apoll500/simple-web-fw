@@ -1,0 +1,7 @@
+DEF setup:SETTINGS
+{
+    $base="custom";
+    $baseman-location="custom/demo/email_texts/v01";
+    $file-system-path="demo/email_texts/v01/";
+    $package-path="simple-web-fw/modules/custom--demo--email_texts--v01/";
+}

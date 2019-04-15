@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF datainfo:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="GDPR-Info";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+        DEF en-us
+        {
+            title="GDPR-Info";
+            ptext
+            {
+                ->
+                ...
+                <-
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

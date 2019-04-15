@@ -1,7 +1,7 @@
 
 DEF IMAGE
 {
-    copyright="Andreas Pollhammer";
+    copyright="Name";
     license="copyrighted -- all rights reserved";
     DEF SUFFIX=".png";
     

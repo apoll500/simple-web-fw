@@ -11,7 +11,11 @@ The following tools are used (optionally):
 There are no other dependencies.
 All code is pure JS/PHP code.
 
-Code and documentation will follow ...
+--------------------------------------------------------------------------------
+
+This project is very much at the beginning.
+
+Missing code and documentation will follow ...
 
 --------------------------------------------------------------------------------
 

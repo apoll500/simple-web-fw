@@ -75,73 +75,7 @@ class SendDB
             }
             die();
         }
-        switch(count($p))
-        {
-            case 0:
-                break;
-            case 1:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0]);
-                break;
-            case 2:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1]);
-                break;
-            case 3:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2]);
-                break;
-            case 4:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3]);
-                break;
-            case 5:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4]);
-                break;
-            case 6:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5]);
-                break;
-            case 7:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6]);
-                break;
-            case 8:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7]);
-                break;
-            case 9:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8]);
-                break;
-            case 10:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9]);
-                break;
-            case 11:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10]);
-                break;
-            case 12:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11]);
-                break;
-            case 13:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12]);
-                break;
-            case 14:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13]);
-                break;
-            case 15:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14]);
-                break;
-            case 16:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14],$p[15]);
-                break;
-            case 17:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14],$p[15],$p[16]);
-                break;
-            case 18:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14],$p[15],$p[16],$p[17]);
-                break;
-            case 19:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14],$p[15],$p[16],$p[17],$p[18]);
-                break;
-            case 20:
-                mysqli_stmt_bind_param($this->stmt,$types,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9],$p[10],$p[11],$p[12],$p[13],$p[14],$p[15],$p[16],$p[17],$p[18],$p[19]);
-                break;
-            default:
-                echo "Error SendDB maxParameter (".count($p).").\n";
-        }
+        mysqli_stmt_bind_param($this->stmt,$types,...$p);
         $this->writelog($SQLString,$p);
         $this->success=mysqli_stmt_execute($this->stmt);
         $this->result=mysqli_stmt_get_result($this->stmt);
