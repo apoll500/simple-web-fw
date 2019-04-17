@@ -16,6 +16,7 @@ pull base/anim_base/v01
 pull base/elements_base/v01
 pull base/http_base/v01
 pull base/loadstat/v01
+pull base/mods_base/v01
 pull base/sysmod_box/v01
 
 pull bmc/sites/v01
@@ -38,6 +39,7 @@ pull layouts/elem/main/common/v01
 pull layouts/elem/main/compact/v01
 pull layouts/page/panel/v01
 pull layouts/page/stdsite/v01
+pull layouts/page/minisite/v01
 
 pull phptools/dfa/v01
 pull phptools/dfa/parsers/varpars/v01
@@ -50,3 +52,4 @@ pull custom/demo/common_hyperlinks/v01
 pull custom/demo/common_images/v01
 pull custom/demo/common_pages/v01
 pull custom/demo/email_texts/v01
+pull sites/demo/v01

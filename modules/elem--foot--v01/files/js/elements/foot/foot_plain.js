@@ -34,7 +34,7 @@ function foot_plain(pdiv)
             }
             else if(lines[i]=="COPYINFO")
             {
-                o+="<i>Copyright © 2017-2019<br>by Andreas Pollhammer</i><br>";
+                o+="<i>"+copyright_info+"</i><br>";
             }
             else
             {

@@ -15,16 +15,16 @@ function main_wrapper(pdiv,style)
     switch(style)
     {
         case "simple":
-            this.object=new main_simple(pdiv);
+            this.object=new main_simple(pdiv,this);
             break;
         case "plain":
-            this.object=new main_plain(pdiv);
+            this.object=new main_plain(pdiv,this);
             break;
         case "inv":
-            this.object=new main_plain(pdiv);
+            this.object=new main_plain(pdiv,this);
             break;
         default:
-            this.object=new main_plain(pdiv);
+            this.object=new main_plain(pdiv,this);
     }
     this.object.preset();
     

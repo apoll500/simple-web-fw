@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $demo.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImRlbW8iOwogICAgJHBhdGg9ImRlbW8vIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $demo/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwNTExIjsKICAgICRkZXNjcmlwdGlvbj0ib25saW5lIGFiIC4uLiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="sites";
+    $baseman-location="sites/demo/v01";
+    $file-system-path="demo/v01/";
+    $package-path="simple-web-fw/modules/sites--demo--v01/";
+}

@@ -1,0 +1,22 @@
+
+//MODULE::
+
+DEF testimg:IMAGE
+{
+    name="testimg";
+    de-at
+    {
+        title="";
+        description="";
+    }
+    en-us
+    {
+        title="";
+        description="";
+    }
+    DEF DIV
+    {
+        "defined"
+        DEF STYLE="float:right;";
+    }
+}

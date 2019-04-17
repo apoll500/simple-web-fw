@@ -3,11 +3,12 @@
 //  js/elements/flap_box/flap_box.css
 
 main_loader.load("js/animate/animate.js");
-main_loader.load("js/common/setup/s_main_plain.js");
+//main_loader.load("js/common/setup/s_main_plain.js");
 
-function main_plain(pdiv)
+function main_plain(pdiv,wrap)
 {
     this.layout="left";
+    this.wrap=wrap;
 
     this.box=document.createElement("div");
     pdiv.appendChild(this.box);
@@ -32,8 +33,12 @@ function main_plain(pdiv)
 //private:
     this.setup=function(s)
     {
-        elements_setup_main_plain(s,this);
+        //elements_setup_main_plain(s,this);
+        elements_setup(s,this.wrap,"plain");
         update();
+    }
+    this.onResize=function()
+    {
     }
 }
 

@@ -3,12 +3,13 @@
 //  js/elements/flap_box/flap_box.css
 
 main_loader.load("js/animate/animate.js");
-main_loader.load("js/common/setup/s_main_simple.js");
+//main_loader.load("js/common/setup/s_main_simple.js");
 
-function main_simple(pdiv)
+function main_simple(pdiv,wrap)
 {
     this.layout="left";
     this.rstyle="null";
+    this.wrap=wrap;
     
     this.d0=document.createElement("div");
     this.d1=document.createElement("div");
@@ -160,7 +161,8 @@ function main_simple(pdiv)
     }
     this.setup=function(s)
     {
-        elements_setup_main_simple(s,this);
+        //elements_setup_main_simple(s,this);
+        elements_setup(s,this.wrap,"simple");
     }
 }
 

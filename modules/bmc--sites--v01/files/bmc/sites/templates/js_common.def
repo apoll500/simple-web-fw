@@ -26,6 +26,7 @@ DEF JS_MAIN_TEXT
         var site=@the_siteid;
         //settings
         var css_substyle="@css_substyle";
+        var copyright_info="@copyright_info";
         <--
     }
     DEF BASE_URL

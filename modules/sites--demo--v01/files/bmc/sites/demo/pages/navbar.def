@@ -1,0 +1,34 @@
+
+//MODULE::
+
+DEF navbar:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="";
+            ptext
+            {
+                ->
+                Home|JavaScript:load_page('home');|home
+                Kontakt|JavaScript:load_page('contact');|contact
+                Bugs|JavaScript:load_page('bugs');|bugs
+                <--
+            }
+        }
+        DEF en-us
+        {
+            title="";
+            ptext
+            {
+                ->
+                Home|JavaScript:load_page('home');|home
+                Contact|JavaScript:load_page('home');|contact
+                Bugs|JavaScript:load_page('bugs');|bugs
+                <--
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

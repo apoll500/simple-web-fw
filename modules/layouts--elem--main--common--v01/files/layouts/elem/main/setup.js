@@ -715,7 +715,7 @@ function run_standard_setup_main_plain(content_str,element)
             //-----------------------------------
             //ANCHOR
             //-----------------------------------
-            else if(lines.substr(0,7)=="WINDOW|")
+            else if(lines[i].substr(0,7)=="WINDOW|")
             {
                 a=lines[i].split("|");
                 o+="<div id=\"element_"+a[1]+"\" style=\"visibility:visible;font-size:18pt;\">"+lines[i]+"</div>";

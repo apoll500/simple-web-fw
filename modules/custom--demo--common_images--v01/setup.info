@@ -1,3 +1,9 @@
+DEF info-files:SETTINGS
+{
+    $demo.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImRlbW8iOwogICAgJHBhdGg9ImRlbW8vIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $demo/common_images.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImNvbW1vbl9pbWFnZXMiOwogICAgJHBhdGg9ImNvbW1vbl9pbWFnZXMvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $demo/common_images/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
 DEF setup:SETTINGS
 {
     $base="custom";

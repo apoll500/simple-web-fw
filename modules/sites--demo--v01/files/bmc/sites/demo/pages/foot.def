@@ -1,0 +1,80 @@
+
+//MODULE::
+
+DEF foot:WEBPAGE
+{
+    DEF LTEXT:parent.parent.TEXT
+    {
+        DEF de-at
+        {
+            title="";
+            ptext
+            {
+                ->
+                BEGIN_COLUMN
+                Kontakt|JavaScript:load_page('contact');
+                Impressum|JavaScript:load_page('impre');
+                Linkliste|JavaScript:load_page('listall');
+                Bugs|JavaScript:load_page('bugs');
+
+                COPYINFO
+                END_COLUMN
+                BEGIN_COLUMN
+                Sprache:
+                de-at|JavaScript:setlang('de-at');
+                en-us|JavaScript:setlang('en-us');
+
+                Datenschutz:
+                Informationen zur Datenverarbeitung|JavaScript:load_page('datainfo');
+                
+                END_COLUMN
+                BEGIN_COLUMN
+                Darstellung/Layout:
+                Standard-Layout|JavaScript:setgstyle('simple');
+                Vereinfachtes Layout|JavaScript:setgstyle('plain');
+                Invertiert|JavaScript:setgstyle('inv');
+
+                Text-Version:
+                text/|JavaScript:setgstyle('text');
+                END_COLUMN
+                <--
+            }
+        }
+        DEF en-us
+        {
+            title="";
+            ptext
+            {
+                ->
+                BEGIN_COLUMN
+                Contact|JavaScript:load_page('contact');
+                Impress|JavaScript:load_page('impre');
+                Links|JavaScript:load_page('listall');
+                Bugs|JavaScript:load_page('bugs');
+                
+                COPYINFO
+                END_COLUMN
+                BEGIN_COLUMN
+                Language:
+                de-at|JavaScript:setlang('de-at');
+                en-us|JavaScript:setlang('en-us');
+                
+                Data Protection:
+                GDPR Info|JavaScript:load_page('datainfo');
+                
+                END_COLUMN
+                BEGIN_COLUMN
+                Layout/Style:
+                Standard-Layout|JavaScript:setgstyle('simple');
+                Simplified-Layout|JavaScript:setgstyle('plain');
+                Inverse-Colors|JavaScript:setgstyle('inv');
+
+                Text-Version:
+                text/|JavaScript:setgstyle('text');
+                END_COLUMN
+                <--
+            }
+        }
+    }
+    INCLUDE="../common/page.def";
+}

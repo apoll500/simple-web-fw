@@ -1,0 +1,32 @@
+
+span.stdtitle1{font-size:12pt;}
+input.stdinput0{margin-top:5px;padding:5px;font-size:14pt;width:260px;border-radius:5px;}
+input.stdinput0gray{margin-top:5px;padding:5px;font-size:14pt;width:60px;border-radius:5px;background-color:#CCCCCC;}
+input.stdinput1{margin-top:5px;padding:5px;font-size:14pt;width:360px;border-radius:5px;}
+input.stdinput1d{margin-top:5px;padding:5px;font-size:14pt;width:360px;border-radius:5px;background-color:#CCCCCC;}
+input.stdbutton{margin-top:5px;padding:5px;font-size:14pt;color:#FFFFFF;background-color:#FFAA33;border-color:#FFCCAA #AA7733 #AA7733 #FFCCAA;border-radius:5px;}
+select.stdselect0{margin-top:5px;padding:5px;font-size:14pt;width:260px;border-radius:5px;}
+select.stdselect1{margin-top:5px;padding:5px;font-size:14pt;width:360px;border-radius:5px;}
+select.stdselect1d{margin-top:5px;padding:5px;font-size:14pt;width:360px;border-radius:5px;}
+div.serverinfobox{margin:5px;padding:10px;border:solid 2px #BBDD77;background-color:#DDFFBB;border-radius:15px;}
+div.servererrorbox{margin:5px;padding:10px;border:solid 2px #DDBB77;background-color:#FFDDBB;border-radius:15px;}
+textarea.stdarea1{margin-top:5px;padding:5px;font-size:14pt;width:360px;height:44px;border-radius:5px;}
+textarea.stdarea2{margin-top:5px;padding:5px;font-size:14pt;width:460px;height:72px;border-radius:5px;}
+textarea.stdarea1gray{margin-top:5px;padding:5px;font-size:14pt;width:360px;height:44px;border-radius:5px;background-color:#CCCCCC;}
+textarea.stdarealarge{margin-top:5px;padding:5px;font-size:11pt;width:560px;height:642px;border-radius:5px;}
+
+div.userdatanav{margin:5px;padding:10px;text-align:center;border:solid 2px #7799CC;background-color:#EEEEFF;border-radius:15px;}
+div.userdatanavl{margin:5px;padding:10px;width:200px;border:solid 2px #7799CC;background-color:#EEEEFF;border-radius:15px;}
+
+span.back_link{padding:10px;text-decoration:underline;font:size:18pt;font-weight:bold;color:#003377;background-image:linear-gradient(rgba(0,0,0,0),#AACCFF);border:solid 3px #AACCFF;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.edit_link{padding:10px;text-decoration:underline;font:size:18pt;font-weight:bold;color:#337700;background-image:linear-gradient(rgba(0,0,0,0),#CCFFAA);border:solid 3px #CCFFAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.show_link{padding:10px;text-decoration:underline;font:size:18pt;font-weight:bold;color:#777700;background-image:linear-gradient(rgba(0,0,0,0),#FFFFAA);border:solid 3px #FFFFAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.delete_link{padding:10px;text-decoration:underline;font:size:18pt;font-weight:bold;color:#773300;background-image:linear-gradient(rgba(0,0,0,0),#FFCCAA);border:solid 3px #FFCCAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.tabnav_link_gray{padding:10px;font:size:18pt;font-weight:bold;color:#777777;background-color:rgba(0,0,0,0.02);border:solid 3px rgba(0,0,0,0.1);border-radius:5px;}
+span.tabnav_link{padding:10px;font:size:18pt;font-weight:bold;color:#003377;background-image:linear-gradient(rgba(0,0,0,0),#AACCFF);border:solid 3px #AACCFF;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.back_link_phantom{padding:10px;font:size:18pt;font-weight:bold;color:#777777;background-color:rgba(0,0,0,0.02);border:solid 3px rgba(0,0,0,0.1);border-radius:5px;}
+
+span.back_link_sel{padding:10px;font:size:18pt;font-weight:bold;color:#003377;background-image:linear-gradient(rgba(255,200,100,0),#AACCFF,#AACCFF,#AACCFF);border:solid 3px #AACCFF;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.edit_link_sel{padding:10px;font:size:18pt;font-weight:bold;color:#337700;background-image:linear-gradient(rgba(255,200,100,1),#CCFFAA,#CCFFAA,#CCFFAA);border:solid 3px #CCFFAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.show_link_sel{padding:10px;font:size:18pt;font-weight:bold;color:#777700;background-image:linear-gradient(rgba(255,200,100,1),#FFFFAA,#FFFFAA,#FFFFAA);border:solid 3px #FFFFAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}
+span.delete_link_sel{padding:10px;font:size:18pt;font-weight:bold;color:#773300;background-image:linear-gradient(rgba(255,150,100,1),#FFCCAA,#FFCCAA,#FFCCAA,#FFCCAA);border:solid 3px #FFCCAA;border-radius:5px;box-shadow:3px 3px 5px #BBBBBB;}

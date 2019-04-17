@@ -1,0 +1,42 @@
+
+//GLOBAL::
+
+INCLUDE="../printers/module.def";
+INCLUDE="../versions/lang.def";
+INCLUDE="../templates/page_template.def";
+INCLUDE="../templates/hyperlink.def";
+INCLUDE="../templates/image.def";
+INCLUDE="images/all_inc.def";
+INCLUDE="../common/my_hyperlinks.def";
+INCLUDE="../common/my_images.def";
+INCLUDE="../common/texts/webinfo.def";
+    
+DEF WMC;
+
+DEF MAIN:WMC
+{
+    set(TARGET_PATH="../../../";);
+    run(MODULE="site";RUN="print_page";);
+    run(MODULE="site";RUN="print_js";);
+}
+
+DEF site:MODULE
+{
+    INCLUDE="../templates/page_common.def";
+    INCLUDE="../templates/js_common.def";
+    INCLUDE="pages/home.def";
+    INCLUDE="pages/foot.def";
+    INCLUDE="pages/navbar.def";
+    INCLUDE="main/main_js.def";
+    INCLUDE="main/page_js.def";
+    //common pages
+    INCLUDE="../common/pages/about.def";
+    INCLUDE="../common/pages/impre.def";
+    INCLUDE="../common/pages/contact.def";
+    INCLUDE="../common/pages/start.def";
+    INCLUDE="../common/pages/agbs.def";
+    INCLUDE="../common/pages/bugs.def";
+    INCLUDE="../common/pages/datainfo.def";
+    INCLUDE="../common/pages/gdpr.def";
+    INCLUDE="../common/pages/listall.def";
+}

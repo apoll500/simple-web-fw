@@ -36,7 +36,7 @@ function foot_simple(pdiv)
             }
             else if(lines[i]=="COPYINFO")
             {
-                o+="<span class='copyinfo'><i>Copyright © 2017-2019<br>by Andreas Pollhammer</i></span><br>";
+                o+="<span class='copyinfo'><i>"+copyright_info+"</i></span><br>";
             }
             else
             {

@@ -35,7 +35,7 @@ div.simple_box_d3_3col_2c{padding-left:20px;padding-right:20px;width:600px;line-
 
 div.simple_box_title{margin-top:20px;margin-bottom:10px;padding:0px;font-family:arial;font-size:14pt;color:#003377;}
 
-div.simple_box_block{display:inline-block;}
+div.simple_box_block{display:inline-block;width:100%;}
 
 div.t01{margin-top:10px;margin-bottom:10px;padding:0px;font-family:arial;font-size:11pt;color:#003377;}
 div.z02{width:280px;height:120px;margin:5px;padding:10px;border-radius:10px;border:solid 2px #DDDDEE;background-color:#DDEEFF;box-shadow:3px 3px 2px 2px #CCCCCC;}
