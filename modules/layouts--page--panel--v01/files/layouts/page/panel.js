@@ -69,7 +69,7 @@ function __u_load_page(page)
     if(!e_mbox)
     {
         //console.log("set main");
-        e_mbox=new fmain_wrapper(m,gstyle,menu);
+        e_mbox=new fmain_wrapper(menu,m,gstyle);
         domel["main"]=e_mbox;
     }
     

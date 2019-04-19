@@ -1,0 +1,14 @@
+DEF info-files:SETTINGS
+{
+    $elem.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImVsZW0iOwogICAgJHBhdGg9ImVsZW0vIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $elem/foot.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImZvb3QiOwogICAgJHBhdGg9ImZvb3QvIjsKICAgICRydW49IiI7CiAgICAkdGFyZ2V0PSIiOwp9Cg==";
+    $elem/foot/common.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9ImNvbW1vbiI7CiAgICAkcGF0aD0iY29tbW9uLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $elem/foot/common/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IiI7CiAgICAkZGVzY3JpcHRpb249IiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="layouts";
+    $baseman-location="layouts/elem/foot/common/v01";
+    $file-system-path="elem/foot/common/v01/";
+    $package-path="simple-web-fw/modules/layouts--elem--foot--common--v01/";
+}

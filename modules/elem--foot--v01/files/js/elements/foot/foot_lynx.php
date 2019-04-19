@@ -1,5 +1,13 @@
 <?php
 
+//------------------------------------------------------------------------------
+// This is a temporary solution.
+// This file should be used for textmode only.
+// 
+// This file will be replaced by new textmode.
+// 
+//------------------------------------------------------------------------------
+
 $lines=file("../text/content/$lang/foot.txt");
 
 echo "<hr>";

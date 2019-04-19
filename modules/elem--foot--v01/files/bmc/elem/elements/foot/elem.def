@@ -1,0 +1,30 @@
+
+//MODULE::
+
+DEF element:ELEMENT
+{
+    DEF element_name="foot";
+    DEF element_style:ELEMENT_STYLE{name="simple";}
+    DEF element_style:ELEMENT_STYLE{name="plain";}
+    DEF element_style:ELEMENT_STYLE_ALIAS{name="inv";DEF impl_name="plain";}
+    DEF element_style_default="plain";
+}
+
+DEF element_wrapper:WRAPPER
+{
+    element_virtual_name="foot";
+    DEF has_load_method="true";
+}
+
+DEF element_simple:IMPL_SIMPLE
+{
+    constructor_dom_setup="@dom_setup_simple_box";
+}
+
+DEF element_plain:IMPL_PLAIN
+{
+}
+
+DEF element_textmode:IMPL_TEXTMODE
+{
+}

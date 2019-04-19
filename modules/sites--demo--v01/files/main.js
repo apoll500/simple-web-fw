@@ -57,6 +57,7 @@ main_loader.load("js/elements/sysmod_box/sysmod_box.css");
 main_loader.load("layouts/page/minisite.js");
 //custom element layouts
 main_loader.load("layouts/elem/main/compact/setup.js");
+main_loader.load("layouts/elem/foot/setup.js");
 //(10)--------------------
 //   MAIN
 //-----------------------

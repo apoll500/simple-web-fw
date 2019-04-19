@@ -20,6 +20,7 @@ pull base/mods_base/v01
 pull base/sysmod_box/v01
 
 pull bmc/sites/v01
+pull bmc/elem/v01
 
 pull elem/flapbox/v01
 pull elem/foot/v01
@@ -37,6 +38,8 @@ pull jstools/reader/v01
 pull layouts/common/v01
 pull layouts/elem/main/common/v01
 pull layouts/elem/main/compact/v01
+pull layouts/elem/foot/common/v01
+
 pull layouts/page/panel/v01
 pull layouts/page/stdsite/v01
 pull layouts/page/minisite/v01

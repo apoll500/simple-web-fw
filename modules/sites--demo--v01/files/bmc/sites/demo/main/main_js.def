@@ -38,6 +38,7 @@ DEF main:JAVASCRIPT,GTEXT
         main_loader.load("layouts/page/minisite.js");
         //custom element layouts
         main_loader.load("layouts/elem/main/compact/setup.js");
+        main_loader.load("layouts/elem/foot/setup.js");
         @JSMAIN
         @LOADING_ANIM
         //(12)--------------------
