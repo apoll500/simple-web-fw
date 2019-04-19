@@ -29,6 +29,10 @@ DEF IMPL_PLAIN:ELEMENT
             {
                 @preset
             }
+            this.onResize=function()
+            {
+                @onResize
+            }
             
         //private:
             this.setup=function(s)

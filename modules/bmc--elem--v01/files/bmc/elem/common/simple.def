@@ -71,11 +71,11 @@ DEF IMPL_SIMPLE:ELEMENT
                 this.onResize();
             }
             ']
-            @handle_events[value='true',text='
             this.onResize=function()
             {
                 @onResize
             }
+            @handle_events[value='true',text='
             this.animate=function(p)
             {
             }

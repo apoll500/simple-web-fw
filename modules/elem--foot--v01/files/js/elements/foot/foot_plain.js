@@ -31,6 +31,10 @@ function foot_plain(pdiv,wrap)
         this.box.innerHTML=o;
 
     }
+    this.onResize=function()
+    {
+        
+    }
     
 //private:
     this.setup=function(s)

@@ -45,6 +45,10 @@ function foot_simple(pdiv,wrap)
     
 //private:
     
+    this.onResize=function()
+    {
+        
+    }
     
     this.setup=function(s)
     {
