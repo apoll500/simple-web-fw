@@ -1,6 +1,6 @@
 
-div.topnavbar{width:100%;margin:0px;padding:0px;background-color:#77AAFF;font-family:arial;font-size:14pt;color:#FFFFFF;border-bottom:solid 1px #773300;}
-div.topnavbar_inner{padding:20px;}
+div.elem_navbar_box{width:100%;margin:0px;padding:0px;background-color:#77AAFF;font-family:arial;font-size:14pt;color:#FFFFFF;border-bottom:solid 1px #773300;}
+div.elem_navbar_box_inner{padding:20px;}
 a.topnav{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#77AAFF;border-radius:4px;}
 a.topnav:hover{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#77AAFF;background-color:#FFFFFF;border-radius:4px;}
 a.topnav:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#77AAFF;border-radius:4px;}

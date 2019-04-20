@@ -1,5 +1,5 @@
 
-div.botbot{width:100%;height:300px;margin:0px;padding:0px;background-color:#000000;font-family:arial;font-size:11pt;color:#FFFFFF;border-top:solid 1px #000000;}
+div.elem_foot_box{width:100%;height:300px;margin:0px;padding:0px;background-color:#000000;font-family:arial;font-size:11pt;color:#FFFFFF;border-top:solid 1px #000000;}
 div.botcolumn{width:200px;margin:0px;padding:20px;float:left;font-family:arial;font-size:11pt;color:#BBBBBB;}
 a.footlink{text-decoration:underline;color:#BBBBBB;}
 a.footlink:hover{text-decoration:underline;color:#FFFFAA;}

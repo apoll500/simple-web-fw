@@ -39,6 +39,7 @@ pull layouts/common/v01
 pull layouts/elem/main/common/v01
 pull layouts/elem/main/compact/v01
 pull layouts/elem/foot/common/v01
+pull layouts/elem/navbar/common/v01
 
 pull layouts/page/panel/v01
 pull layouts/page/stdsite/v01

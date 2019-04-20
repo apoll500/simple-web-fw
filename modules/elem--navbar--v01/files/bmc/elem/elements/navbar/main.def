@@ -1,0 +1,21 @@
+
+//GLOBAL::
+
+INCLUDE="../../common/printer.def";
+    
+DEF WMC;
+
+DEF MAIN:WMC
+{
+    set(TARGET_PATH="../../../../js/elements/";);
+    run(MODULE="elem";RUN="create_file";);
+}
+
+DEF elem:MODULE
+{
+    INCLUDE="elem.def";
+    INCLUDE="../../common/wrapper.def";
+    INCLUDE="../../common/simple.def";
+    INCLUDE="../../common/plain.def";
+    INCLUDE="../../common/textmode.def";
+}

@@ -1,0 +1,85 @@
+
+//MODULE::
+
+DEF element:ELEMENT
+{
+    DEF element_name="navbar";
+    DEF element_style:ELEMENT_STYLE{name="simple";}
+    DEF element_style:ELEMENT_STYLE{name="plain";}
+    DEF element_style:ELEMENT_STYLE_ALIAS{name="inv";DEF impl_name="plain";}
+    DEF element_style_default="plain";
+}
+
+DEF element_wrapper:WRAPPER
+{
+    element_virtual_name="navbar";
+    DEF has_load_method="true";
+}
+
+DEF element_simple:IMPL_SIMPLE
+{
+    constructor_dom_setup
+    {
+        ->
+            this.box=document.createElement("div");
+            this.box_inner=document.createElement("div");
+            this.box.className="elem_navbar_box";
+            this.box_inner.className="elem_navbar_box_inner";
+            this.box.appendChild(this.box_inner);
+            pdiv.appendChild(this.box);
+        <-
+    }
+    constructor_extra
+    {
+        ->
+            this.content="";
+            this.cpage=currentpage;
+            this.layout="standard";
+        <-
+    }
+    DEF onResize
+    {
+        ->
+                if(this.layout=="logo_layout")
+                {
+                    if(screenx<580)
+                    {
+                        var o="";
+                        var lines=this.content.split("\n");
+                        for(var i=0;i<lines.length;i++)
+                        {
+                            var a=lines[i].split("|");
+                            if(a[2]==currentpage.substr(0,a[2].length))style="topnav2";else style="topnav";
+                            o+="<a href=\""+a[1]+"\" class=\""+style+"\">"+a[0]+"</a>";
+                            if(i==0)o+="<br>";
+                            if(i>0 && i+1<lines.length)o+="&nbsp;|&nbsp;";
+                        }
+                        o+="</nobr>";
+                        this.box_inner.innerHTML=o;
+                    }
+                    else
+                    {
+                        var o="";
+                        var lines=this.content.split("\n");
+                        for(var i=0;i<lines.length;i++)
+                        {
+                            var a=lines[i].split("|");
+                            if(a[2]==currentpage.substr(0,a[2].length))style="topnav2";else style="topnav";
+                            o+="<a href=\""+a[1]+"\" class=\""+style+"\">"+a[0]+"</a>";
+                            if(i+1<lines.length)o+="&nbsp;|&nbsp;";
+                        }
+                        o+="</nobr>";
+                        this.box_inner.innerHTML=o;
+                    }
+                }
+        <-
+    }
+}
+
+DEF element_plain:IMPL_PLAIN
+{
+}
+
+DEF element_textmode:IMPL_TEXTMODE
+{
+}
