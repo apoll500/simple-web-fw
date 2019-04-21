@@ -1,0 +1,202 @@
+
+//MODULE::
+
+DEF element:ELEMENT
+{
+    DEF element_name="main";
+    DEF element_style:ELEMENT_STYLE{name="simple";}
+    DEF element_style:ELEMENT_STYLE{name="plain";}
+    DEF element_style:ELEMENT_STYLE_ALIAS{name="inv";DEF impl_name="plain";}
+    DEF element_style_default="plain";
+}
+
+DEF element_wrapper:WRAPPER
+{
+    DEF has_load_method="true";
+    DEF has_load2_method="true";
+    DEF has_window_scroll_method="true";
+    
+    element_virtual_name="main";
+    constructor_extra
+    {
+        ->
+            this.layout="left";
+            this.vars_context=new file_storage();
+            this.content_token="";
+        <-
+    }
+    DEF setup_method
+    {
+        ->
+                this.object.setup(s);
+                window.scrollTo(0,0);
+        <-
+    }
+    DEF reset_method
+    {
+        ->
+                //this.postloadfunction=null;
+                pdiv.scrollTop=0;
+        <-
+    }
+}
+
+DEF element_simple:IMPL_SIMPLE
+{
+    DEF handle_events="true";
+    additional_includes
+    {
+        ->
+        main_loader.load("js/animate/animate.js");
+        <--
+    }
+    additional_code
+    {
+        ->
+        function close_local_info_banner()
+        {
+            var e=document.getElementById("local_info_banner");
+            e.innerHTML="";
+        }
+        <--
+    }
+    constructor_dom_setup
+    {
+        ->
+            this.box=document.createElement("div");
+            this.d1=document.createElement("div");
+            this.d2=document.createElement("div");
+            this.d3=document.createElement("div");
+            this.d4=document.createElement("div");
+            this.title=document.createElement("div");
+            this.content=document.createElement("div");
+            this.box.className="simple_box_d0";
+            //this.d1.className="simple_box_d1_maxi";
+            //this.d2.className="simple_box_d2_maxi";
+            //this.d3.className="simple_box_d3_maxi";
+            this.d4.align="left";
+            this.title.className="simple_box_title";
+            this.box.appendChild(this.d1);
+            this.d1.appendChild(this.d2);
+            this.d2.appendChild(this.d3);
+            this.d3.appendChild(this.d4);
+            this.d4.appendChild(this.title);
+            this.d4.appendChild(this.content);
+            
+            pdiv.appendChild(this.box);
+        <-
+    }
+    constructor_extra
+    {
+        ->
+            this.layout="left";
+            this.rstyle="null";
+            this.flapminh=42;
+        <-
+    }
+    DEF preset
+    {
+        ->
+                var o="\
+                <div align='center'>\
+                    loading...\
+                </div>";
+                this.title.innerHTML=o;
+                this.content.innerHTML="";
+                this.onResize();
+        <-
+    }
+    DEF onResize
+    {
+        ->
+                //console.log(screenx);
+                if(this.layout=="multicol")
+                {
+                    if(screenx<680)
+                    {
+                        this.rstyle="mini";
+                        this.d1.className="simple_box_d1_mini";
+                        this.d2.className="simple_box_d2_mini";
+                        this.d3.className="simple_box_d3_mini";
+                    }
+                    else if(screenx<1360)
+                    {
+                        this.rstyle="maxi";
+                        this.d1.className="simple_box_d1_maxi";
+                        this.d2.className="simple_box_d2_maxi";
+                        this.d3.className="simple_box_d3_maxi";
+                    }
+                    else if(screenx<2040)
+                    {
+                        this.rstyle="2col";
+                        this.d1.className="simple_box_d1_2col";
+                        this.d2.className="simple_box_d2_2col";
+                        this.d3.className="simple_box_d3_2col";
+                    }
+                    else
+                    {
+                        this.rstyle="3col";
+                        this.d1.className="simple_box_d1_3col";
+                        this.d2.className="simple_box_d2_3col";
+                        this.d3.className="simple_box_d3_3col";
+                    }
+                }
+                else if(this.layout=="multicol2c")
+                {
+                    if(screenx<680)
+                    {
+                        this.rstyle="mini";
+                        this.d1.className="simple_box_d1_mini";
+                        this.d2.className="simple_box_d2_mini";
+                        this.d3.className="simple_box_d3_mini";
+                    }
+                    else if(screenx<1360)
+                    {
+                        this.rstyle="maxi";
+                        this.d1.className="simple_box_d1_maxi_2c";
+                        this.d2.className="simple_box_d2_maxi_2c";
+                        this.d3.className="simple_box_d3_maxi_2c";
+                    }
+                    else if(screenx<2040)
+                    {
+                        this.rstyle="2col";
+                        this.d1.className="simple_box_d1_2col_2c";
+                        this.d2.className="simple_box_d2_2col_2c";
+                        this.d3.className="simple_box_d3_2col_2c";
+                    }
+                    else
+                    {
+                        this.rstyle="3col";
+                        this.d1.className="simple_box_d1_3col_2c";
+                        this.d2.className="simple_box_d2_3col_2c";
+                        this.d3.className="simple_box_d3_3col_2c";
+                    }
+                }
+                else
+                {
+                    if(screenx<680)
+                    {
+                        this.rstyle="mini";
+                        this.d1.className="simple_box_d1_mini";
+                        this.d2.className="simple_box_d2_mini";
+                        this.d3.className="simple_box_d3_mini";
+                    }
+                    else
+                    {
+                        this.rstyle="maxi";
+                        this.d1.className="simple_box_d1_maxi";
+                        this.d2.className="simple_box_d2_maxi";
+                        this.d3.className="simple_box_d3_maxi";
+                    }
+                }
+        <-
+    }
+}
+
+DEF element_plain:IMPL_PLAIN
+{
+}
+
+DEF element_textmode:IMPL_TEXTMODE
+{
+}
