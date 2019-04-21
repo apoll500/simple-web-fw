@@ -1,0 +1,12 @@
+DEF info-files:SETTINGS
+{
+    $mod_setup.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9Im1vZF9zZXR1cCI7CiAgICAkcGF0aD0ibW9kX3NldHVwLyI7CiAgICAkcnVuPSIiOwogICAgJHRhcmdldD0iIjsKfQo=";
+    $mod_setup/v01.info="REVGIHZlcnNpb246U0VUVElOR1MKewogICAgJGRhdGU9IjIwMTYwMzE4IjsKICAgICRkZXNjcmlwdGlvbj0ib25saW5lIGFiIC4uLiI7CiAgICAkZmxhZz0iMSI7CiAgICAkcGF0aD0idjAxLyI7CiAgICAkdmVyc2lvbj0idjAxIjsKfQo=";
+}
+DEF setup:SETTINGS
+{
+    $base="mods";
+    $baseman-location="mods/mod_setup/v01";
+    $file-system-path="mod_setup/v01/";
+    $package-path="simple-web-fw/modules/mods--mod_setup--v01/";
+}
