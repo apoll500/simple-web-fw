@@ -46,6 +46,7 @@ pull layouts/page/panel/v01
 pull layouts/page/stdsite/v01
 pull layouts/page/minisite/v01
 
+pull mods/mod_blog/v01
 pull mods/mod_setup/v01
 
 pull phptools/dfa/v01

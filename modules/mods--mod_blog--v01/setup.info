@@ -1,0 +1,11 @@
+DEF info-files:SETTINGS
+{
+    $mod_blog.info="REVGIHByb2plY3Q6U0VUVElOR1MKewogICAgJGRlc2NyaXB0aW9uPSIiOwogICAgJGZsYWc9IjEiOwogICAgJG5hbWU9Im1vZF9ibG9nIjsKICAgICRwYXRoPSJtb2RfYmxvZy8iOwogICAgJHJ1bj0iIjsKICAgICR0YXJnZXQ9IiI7Cn0K";
+}
+DEF setup:SETTINGS
+{
+    $base="mods";
+    $baseman-location="mods/mod_blog/v01";
+    $file-system-path="mod_blog/v01/";
+    $package-path="simple-web-fw/modules/mods--mod_blog--v01/";
+}
