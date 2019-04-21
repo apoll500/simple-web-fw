@@ -23,6 +23,7 @@ pull bmc/sites/v01
 pull bmc/elem/v01
 
 pull elem/flapbox/v01
+pull elem/fmain/v01
 pull elem/foot/v01
 pull elem/loginbar/v01
 pull elem/main/v01
