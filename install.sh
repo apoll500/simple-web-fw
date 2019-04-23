@@ -22,6 +22,7 @@ pull base/sysmod_box/v01
 pull bmc/sites/v01
 pull bmc/elem/v01
 
+pull elem/canvas/v01
 pull elem/flapbox/v01
 pull elem/fmain/v01
 pull elem/foot/v01
