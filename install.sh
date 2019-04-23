@@ -33,6 +33,8 @@ pull elem/results_nav/v01
 pull elem/treesel/v01
 pull elem/treeselfill/v01
 
+pull images/packages/menu/v01
+
 pull jstools/dfa/v01
 pull jstools/dfa/parsers/webfw_varpars/v01
 pull jstools/reader/v01
