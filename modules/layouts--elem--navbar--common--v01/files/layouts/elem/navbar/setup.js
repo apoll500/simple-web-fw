@@ -26,7 +26,7 @@ function run_standard_setup_navbar_simple(content_str,element)
 {
     if(content_str==element.object.content && element.object.cpage==currentpage)
     {
-        return;
+        return true;
     }
     element.object.content=content_str;
     element.object.cpage=currentpage;

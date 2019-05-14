@@ -57,6 +57,12 @@ function navbar_wrapper(pdiv,style)
     
     
     
+    this.scroll=function(x,y)
+    {
+        window.scrollTo(x,y);
+    }
+    
+    
 //private:
     
     
