@@ -1,4 +1,4 @@
-﻿
+
 var pagecount=0;
 var loadcount=0;
 var gotopage="";

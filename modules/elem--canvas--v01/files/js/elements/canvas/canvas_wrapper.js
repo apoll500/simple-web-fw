@@ -1,4 +1,4 @@
-﻿
+
 main_loader.load("js/elements/canvas/canvas_simple.js");
 main_loader.load("js/elements/canvas/canvas_plain.js");
 main_loader.load("js/http/common.js");

@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
 *                                                                              *
 *  standard setup                                                              *
 *                                                                              *
@@ -908,7 +908,7 @@ function run_standard_setup_main_plain(content_str,element)
     //
     //POSTLOAD
     //...
-
+    elements_factory_create_from_accumulator();
     return true;
 }
 

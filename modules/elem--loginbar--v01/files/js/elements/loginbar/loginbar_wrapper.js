@@ -1,4 +1,4 @@
-﻿
+
 main_loader.load("js/elements/loginbar/loginbar_simple.js");
 main_loader.load("js/elements/loginbar/loginbar_plain.js");
 main_loader.load("js/http/common.js");

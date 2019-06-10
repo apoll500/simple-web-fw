@@ -1,4 +1,4 @@
-﻿
+
 function treesel_simple(pdiv,wrap)
 {
     pdiv.innerHTML="";

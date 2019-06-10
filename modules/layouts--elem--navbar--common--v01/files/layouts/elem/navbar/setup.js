@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
 *                                                                              *
 *  standard setup                                                              *
 *                                                                              *
@@ -62,7 +62,7 @@ function run_standard_setup_navbar_plain(content_str,element)
         if(i+1<lines.length)o+="&nbsp;|&nbsp;";
     }
         
-    element.object.box_inner.innerHTML=o;
+    element.object.box.innerHTML=o;
 
     return true;
 }

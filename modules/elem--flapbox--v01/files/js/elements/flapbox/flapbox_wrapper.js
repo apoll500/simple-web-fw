@@ -1,4 +1,4 @@
-﻿
+
 main_loader.load("js/elements/flapbox/flapbox.js");
 main_loader.load("js/elements/flapbox/flapbox_plain.js");
 main_loader.load("js/http/common.js");

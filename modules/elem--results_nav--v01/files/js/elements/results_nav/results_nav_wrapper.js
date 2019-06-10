@@ -1,4 +1,4 @@
-﻿
+
 main_loader.load("js/elements/results_nav/results_nav_simple.js");
 main_loader.load("js/elements/results_nav/results_nav_plain.js");
 main_loader.load("js/http/common.js");

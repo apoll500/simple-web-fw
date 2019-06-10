@@ -1,4 +1,4 @@
-﻿//requires:
+//requires:
 //  js/elements/base.js
 //  js/elements/flap_box/flap_box_plain.css
 

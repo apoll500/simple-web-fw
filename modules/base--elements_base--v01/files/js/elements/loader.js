@@ -1,4 +1,4 @@
-﻿
+
 var DEBUG_LOADER_ON=true;
 
 function script_loader(ready_callback,anim_callback,max_files)

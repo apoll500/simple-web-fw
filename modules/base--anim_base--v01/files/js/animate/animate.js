@@ -1,5 +1,9 @@
 
-//Animation
+//------------------------------------------------------------------------------
+// This is the old (outdated) version using setInterval().
+//------------------------------------------------------------------------------
+
+//Animation Status
 var anim_time=0;
 var anim_duration=100;
 var anim=null;

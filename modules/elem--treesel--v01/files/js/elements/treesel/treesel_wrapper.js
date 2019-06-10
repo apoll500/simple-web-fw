@@ -1,4 +1,4 @@
-﻿
+
 main_loader.load("js/elements/treesel/treesel_simple.js");
 main_loader.load("js/elements/treesel/treesel_plain.js");
 main_loader.load("js/http/common.js");

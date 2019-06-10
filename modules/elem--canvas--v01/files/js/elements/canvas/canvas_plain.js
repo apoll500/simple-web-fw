@@ -1,4 +1,4 @@
-﻿main_loader.load("js/animate/animate.js");
+main_loader.load("js/animate/animate.js");
 
 function canvas_plain(pdiv)
 {

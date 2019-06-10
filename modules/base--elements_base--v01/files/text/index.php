@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
     $r=rand();
     
@@ -59,6 +59,9 @@
     $action=checkval($action);
     
     if($page=="home" && $action!="nothing")$page=$action;
+
+    // --TODO-- CHECK THIS!
+    if($action=="nothing")$action=$page;
     
     $module="";
     for($i=0;$i<strlen($action);$i++)
