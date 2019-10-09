@@ -40,6 +40,13 @@ function save_form(next,module,area,command,formular)
             //formdata+="&"+document.forms[formular].elements[i].name+"="+btoa(document.forms[formular].elements[i].checked);
             formdata+="&"+document.forms[formular].elements[i].name+"="+encode_b64(document.forms[formular].elements[i].checked);
         }
+        else if(document.forms[formular].elements[i].type=="file")
+        {
+            //File inputs connot be converted to parameter strings. Implementation missing!
+            //Workaround by submitting the form with iframe as target.
+            run_form_submit(next,module,area,command,formular,"","");
+            return;
+        }
         else
         {
             //formdata+="&"+document.forms[formular].elements[i].name+"="+btoa(document.forms[formular].elements[i].value);
@@ -57,6 +64,13 @@ function save_form2(next,module,area,command,formular,extra_data)
         {
             //formdata+="&"+document.forms[formular].elements[i].name+"="+btoa(document.forms[formular].elements[i].checked);
             formdata+="&"+document.forms[formular].elements[i].name+"="+encode_b64(document.forms[formular].elements[i].checked);
+        }
+        else if(document.forms[formular].elements[i].type=="file")
+        {
+            //File inputs connot be converted to parameter strings. Implementation missing!
+            //Workaround by submitting the form with iframe as target.
+            run_form_submit(next,module,area,command,formular,"",extra_data);
+            return;
         }
         else
         {
@@ -76,6 +90,13 @@ function run_form(next,module,area,command,formular,context)
             //formdata+="&"+document.forms[formular].elements[i].name+"="+btoa(document.forms[formular].elements[i].checked);
             formdata+="&"+document.forms[formular].elements[i].name+"="+encode_b64(document.forms[formular].elements[i].checked);
         }
+        else if(document.forms[formular].elements[i].type=="file")
+        {
+            //File inputs connot be converted to parameter strings. Implementation missing!
+            //Workaround by submitting the form with iframe as target.
+            run_form_submit(next,module,area,command,formular,context,"");
+            return;
+        }
         else
         {
             //formdata+="&"+document.forms[formular].elements[i].name+"="+btoa(document.forms[formular].elements[i].value);
@@ -83,6 +104,26 @@ function run_form(next,module,area,command,formular,context)
         }
     }
     main_handler.onClick(next+"|"+context+"|"+module,"area="+area+"&comm="+module+"_"+command+formdata);
+}
+function run_form_submit(next,module,area,command,formular,context,extra_data)
+{
+    //construct a name for the iframe
+    var iname="out_frame_"+Math.random();
+    
+    //add a iframe
+    var ifr=document.createElement("iframe");
+    ifr.id=iname;ifr.setAttribute("name",iname);
+    var pdiv=document.getElementById(formular).parentElement;
+    pdiv.appendChild(ifr);
+    
+    //prepare handling of response
+    var type=next+"|"+context+"|"+module;
+    ifr.setAttribute("onload","receive_message(window['"+iname+"'].document.body.innerHTML,main_handler,'"+type+"')");
+    
+    //submit the form
+    document.forms[formular].action="sys/index.php?site="+site+"&lang="+lang+"&area="+area+"&comm="+module+"_"+command+extra_data;
+    document.forms[formular].target=iname;
+    document.forms[formular].submit();
 }
 //(1)---------------------------------------------------------------------------
 //------------------------------------------------------------------------------

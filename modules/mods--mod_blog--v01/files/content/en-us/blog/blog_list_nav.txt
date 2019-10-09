@@ -1,0 +1,5 @@
+$page="Seite:";
+$next="weiter";
+$prev="zurück";
+$first="erste $page";
+$last="letzte $page";

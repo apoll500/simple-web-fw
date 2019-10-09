@@ -1,9 +1,9 @@
 
-div.elem_navbar_box{width:100%;margin:0px;padding:0px;background:linear-gradient(to top right,#FFFFAA,#FFDDAA,#FFFFAA,#FFDDAA,#FFFFAA,#FFDDAA);font-family:arial;font-size:14pt;color:#FFFFFF;border-bottom:solid 1px #773300;}
+div.elem_navbar_box{width:100%;margin:0px;padding:0px;background:linear-gradient(to top right,#000000,#EEF5FA,#EEFAFF,#EEF5FA,#EEFAFF,#EEFAFF,#EEFAFF,#EEF5FA,#EEFAFF,#EEFAFF,#EEFAFF,#EEFAFF,#EEFAFF,#EEF5FA,#EEF5FA,#EEF5FA,#EEF5FA,#E5E9EF);font-family:arial;font-size:14pt;color:#FFFFFF;border-bottom:solid 1px #773300;}
 div.elem_navbar_box_inner{padding:20px;}
-a.topnav{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#8ea6c8;border-radius:4px;}
+a.topnav{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#AABBCC;border-radius:4px;}
 a.topnav:hover{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;box-shadow:0px 0px 2px 2px #CCCCCC;}
-a.topnav:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#8ea6c8;border-radius:4px;}
+a.topnav:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#FFFFFF;background-color:#DDEEFF;border-radius:4px;}
 a.topnav2{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;box-shadow:0px 0px 2px 2px #CCCCCC;}
 a.topnav2:hover{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;box-shadow:0px 0px 2px 2px #CCCCCC;}
 a.topnav2:active{padding:5px;text-decoration:none;font-family:arial;font-size:12pt;color:#000000;background-color:#FFFFFF;border-radius:4px;box-shadow:0px 0px 2px 2px #CCCCCC;}

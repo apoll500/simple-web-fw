@@ -69,6 +69,7 @@ function mods_load(module,token)
 }
 function mods_load_data(module,token,data)
 {
+    data=string_to_array(data);
     var data_string=data_to_string(data);
     dataevent_reset(1);
     currentpage="mod_"+module+"_"+token;
@@ -96,6 +97,7 @@ function mods_load_silent(module,token)
 }
 function mods_load_data_silent(module,token,data)
 {
+    data=string_to_array(data);
     var data_string=data_to_string(data);
     //console.log("mods_load_data_silent("+module+","+token+","+data+")");
     dataevent_reset(1);
@@ -133,8 +135,42 @@ function data_to_string(data)
         return data;
     }
 }
+function string_to_array(data)
+{
+    //if an array is falsely given as string.
+    if(!isArray(data) && data.substr(0,1)=='[' && data.substr(data.length-1)==']')
+    {
+        console.log("array given as string");
+        data=data.substr(1,data.length-2).split(',');
+    }
+    return data;
+}
+function string_to_array_ex(data)
+{
+    //convert to array from any format
+    if(isArray(data))
+    {
+        return data;
+    }
+    if(data.substr(0,1)=='[' && data.substr(data.length-1)==']')
+    {
+        console.log("array given as string");
+        return data.substr(1,data.length-2).split(',');
+    }
+    return [data];
+}
 function load_module_from_page(page)
 {
+    var ppos=page.search("/");
+    if(ppos!=-1)
+    {
+        var pname=page.substr(ppos+1);
+        if(pname.substr(0,4)=="mod_")
+        {
+            page=pname;
+        }
+    }
+
     if(page.substr(0,4)=="mod_")
     {
         var s=(page.substr(4)+"_").split('_');
@@ -212,13 +248,16 @@ function load0(token)
     var type="";
     var module="";
     var context="";
+    
     var t=token.split("|");
     var n=t.length;
+    
     if(n==1)
     {
         t=token.split(",");
         n=t.length;
     }
+    
     if(n==1)
     {
         load(token);

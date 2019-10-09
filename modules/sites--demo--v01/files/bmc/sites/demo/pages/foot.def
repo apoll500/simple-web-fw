@@ -48,7 +48,7 @@ DEF foot:WEBPAGE
                 ->
                 BEGIN_COLUMN
                 Contact|JavaScript:load_page('contact');
-                Impress|JavaScript:load_page('impre');
+                Imprint|JavaScript:load_page('impre');
                 Links|JavaScript:load_page('listall');
                 Bugs|JavaScript:load_page('bugs');
                 

@@ -529,7 +529,7 @@ function form_generator()
                     //console.log("webforms -- load parent "+i+": "+m);
                     if(m!="")
                     {
-                        var a=global_file_storage.load(baseurl+"content/"+lang+"/"+m+"_show.txt");
+                        var a=global_file_storage.load(baseurl+"content/"+lang+"/"+m+"/show.txt");
                         if(i!=0)this.feed_content2(a,"_"+i);
                         else this.feed_content2(a,"");
                     }

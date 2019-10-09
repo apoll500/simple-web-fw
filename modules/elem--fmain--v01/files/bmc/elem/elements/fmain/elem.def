@@ -66,6 +66,15 @@ DEF element_simple:IMPL_SIMPLE
         }
         <--
     }
+    additional_method
+    {
+        ->
+            this.set_adiv=function(adiv)
+            {
+                this.adiv=adiv;//menu
+            }
+        <--
+    }
     constructor_dom_setup
     {
         ->
@@ -119,7 +128,7 @@ DEF element_simple:IMPL_SIMPLE
     {
         ->
                 var w=0;
-                if(adiv)w=parseInt(adiv.left_admin_box.anim_width);
+                if(this.adiv)w=parseInt(this.adiv.left_admin_box.anim_width);
                 if(screenx<680+w)
                 {
                     this.rstyle="mini";
@@ -134,7 +143,7 @@ DEF element_simple:IMPL_SIMPLE
                     this.d2.className="simple_box_d2_maxi";
                     this.d3.className="simple_box_d3_maxi";
                 }
-                if(adiv)
+                if(this.adiv)
                 {
                     this.box.style.marginLeft=w+"px";
                     this.box.style.width=(screenx-w)+"px";
@@ -150,6 +159,14 @@ DEF element_simple:IMPL_SIMPLE
 
 DEF element_plain:IMPL_PLAIN
 {
+    additional_method
+    {
+        ->
+            this.set_adiv=function(adiv)
+            {
+            }
+        <--
+    }
 }
 
 DEF element_textmode:IMPL_TEXTMODE

@@ -19,6 +19,26 @@ main_loader.load("js/elements/main/main_simple"+css_substyle+".css");
 //loading element layouts
 main_loader.load("layouts/elem/main/setup.js");
 
+function __u_chstyle__check_colors(m)
+{
+    var col1=m.style.color;
+    var col0=m.style.backgroundColor;
+    if(gstyle=="inv")
+    {
+        m.style.color="#FFFFFF";
+        m.style.backgroundColor="#000000";
+    }
+    else if(gstyle=="plain")
+    {
+        m.style.color="#000000";
+        m.style.backgroundColor="#FFFFFF";
+    }
+    for(var i=0;i<m.children.length;i++)
+    {
+        __u_chstyle__check_colors(m.children[i]);
+    }
+}
+
 function __update()
 {
     if(gstyle=="inv")
@@ -60,12 +80,12 @@ function __u_load_page(page)
     if(!e_navbar)
     {
         e_navbar=new navbar_wrapper(m,gstyle);
-        e_navbar.load("content/"+lang+"/navbar.txt");
+        e_navbar.load("content/"+lang+"/"+site+"/navbar.txt");
     }
     else
     {
         //Markierung setzen.
-        e_navbar.load("content/"+lang+"/navbar.txt");
+        e_navbar.load("content/"+lang+"/"+site+"/navbar.txt");
     }
     
     if(!e_mbox)
@@ -99,7 +119,7 @@ function __u_load_page(page)
     if(!e_foot)
     {
         e_foot=new foot_wrapper(m,gstyle);
-        e_foot.load("content/"+lang+"/foot.txt");
+        e_foot.load("content/"+lang+"/"+site+"/foot.txt");
     }
 }
 

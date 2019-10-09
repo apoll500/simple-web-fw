@@ -1,0 +1,3 @@
+Home|JavaScript:load_page('home');|home
+Contact|JavaScript:load_page('contact');|contact
+Bugs|JavaScript:load_page('bugs');|bugs

@@ -40,9 +40,9 @@ DEF element_simple:IMPL_SIMPLE
     DEF onResize
     {
         ->
-                if(this.layout=="logo_layout")
+                if(true)//this.layout=="logo_layout")
                 {
-                    if(screenx<580)
+                    if(screenx<580 && this.layout=="logo_layout")
                     {
                         var o="";
                         var lines=this.content.split("\n");

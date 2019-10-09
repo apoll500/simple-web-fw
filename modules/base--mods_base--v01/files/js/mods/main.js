@@ -10,7 +10,7 @@ main_loader.load("js/mods/run.js");
 *                                                                              *
 *  UTF-8 - Encoding                                                            *
 *                                                                              *
-*  JavaScript uses either UCS-2 or UTF-16!                                     *
+*  JavaScript uses UCS-2 or UTF-16!                                            *
 *  Therefore all strings have to be converted to and from UTF-8.               *
 *                                                                              *
 *******************************************************************************/
@@ -24,9 +24,10 @@ function decode_utf8(s)
 }
 function encode_b64_data(s)
 {
-    //An application receiving the base64 data, does not necessarily know if
-    //this data represents a string for which a terminating '\0' would be
-    //required. So it makes sense to add it here.
+    //Null-termination helps to indicate that this data represents a string.
+    //An application receiving this encoded string must allways calculate the
+    //length of the string based on the length of the base64 encoded
+    //representation (without padding) and ensure null-termination itself.
     return btoa(encode_utf8(s)+"\0");
 }
 function encode_b64(s)
@@ -40,6 +41,32 @@ function decode_b64(s)
 /*******************************************************************************
 *                                                                              *
 *  Helpers                                                                     *
+*                                                                              *
+*                                                                              *
+*******************************************************************************/
+function encodeURIComponentValue(data)
+{
+    if(typeof data != 'string')data=data.toString();
+    if(data.charAt(0)==":")return data.substr(1);
+    var k=data.search("=");
+    if(k==-1)return encodeURIComponent(data);
+    return data.substr(0,k)+"="+encodeURIComponent(data.substr(k+1));
+}
+function get_keydata(keys,data)
+{
+    data=string_to_array_ex(data);
+    var keydata=[];
+    for(var i=0;i<keys.length && i<data.length;i++)
+    {
+        keydata[i]=[];
+        keydata[i][0]=keys[i];
+        keydata[i][1]=data[i];
+    }
+    return keydata;
+}
+/*******************************************************************************
+*                                                                              *
+*  Helpers 2                                                                   *
 *                                                                              *
 *                                                                              *
 *******************************************************************************/
@@ -154,12 +181,15 @@ function restore_all_foms_data(data)
             {
                 value=decode_b64(a[i]);
                 //console.log("restore_all_foms_data() "+form_name+"::"+name+"::"+value);
-                if(document.forms.namedItem(form_name).elements.namedItem(name))
+                // (1) Update inputs
+                if(document.forms.namedItem(form_name) && document.forms.namedItem(form_name).elements.namedItem(name))
                 {
                     document.forms.namedItem(form_name).elements.namedItem(name).value=value;
                     if(form_name==inputform)
                     {
-                        var sx=document.forms.namedItem(form_name).elements.namedItem(name).className.substr(-2);
+                        var sx='0';
+                        if(document.forms.namedItem(form_name).elements.namedItem(name).className)//may be undefined, if naming of fields is not 1-deutig.
+                            sx=document.forms.namedItem(form_name).elements.namedItem(name).className.substr(-2);
                         if(!(sx.substr(0,1)>='0' && sx.substr(0,1)<='9' && sx.substr(1,1)>='d'))
                         {
                             document.forms.namedItem(form_name).elements.namedItem(name).disabled=false;
@@ -168,8 +198,14 @@ function restore_all_foms_data(data)
                 }
                 else
                 {
-                    console.log("[WARNING] Ignoring missing (sub-)element '"+name+"': Discarding value '"+value+"'.");
+                    console.log("[WARNING] Ignoring missing (sub-)element '"+form_name+"/"+name+"': Discarding value '"+value+"'.");
                 }
+                // (2) Update others
+                //--TODO--
+                var caller_module=context_load0("select_caller_module");
+                //console.log("restore_all_foms_data: "+name+"="+value);
+                replace_in_tree(caller_module,e_mbox.object.box,name,value);
+                //
                 name="";
                 value="";
             }
@@ -202,6 +238,19 @@ function context_counter_reset()
     context_sublevel2=0;
     context_store("parent_module","");
 }
+function context_remove_prefixed(name)
+{
+    main_handler.main_context.remove_prefixed(name);
+    //DEBUG
+    context_cleanup();
+}
+function context_remove_prefixed2(level,name)
+{
+    var prefix=context_make_prefix2(level);
+    main_handler.main_context.remove_prefixed(prefix+name);
+    //DEBUG
+    context_cleanup();
+}
 function context_store(name,value)
 {
     context_store2(context_sublevel,name,value);
@@ -213,6 +262,54 @@ function context_store2(level,name,value)
     main_handler.main_context.store(prefix+name,value);
     //DEBUG
     context_cleanup();
+}
+function context_store2_indexed(level,name,value)
+{
+    name=context_get_free_name(level,name);
+    
+    var prefix=context_make_prefix2(level);
+    //console.log("STORE: "+prefix+name+"="+value);
+    main_handler.main_context.store(prefix+name,value);
+    //DEBUG
+    context_cleanup();
+}
+function context_get_free_name(level,name)
+{
+    var name_exists=true;
+    var name_counter=0;
+    while(name_exists)
+    {
+        var val=context_load2(level,name,"value_not_set");
+        if(val=="value_not_set")
+        {
+            name_exists=false;
+        }
+        else
+        {
+            if(name.charAt(name.length-1)=="]")
+            {
+                name=name.substr(0,name.indexOf('['));
+            }
+            name+="["+name_counter+"]";
+            name_counter++;
+        }
+    }
+    return name;
+}
+function context_next_indexed_name(name)
+{
+    if(name.charAt(name.length-1)=="]")
+    {
+        var p=name.indexOf("[");
+        var k=name.substr(p+1,name.length-p-1);
+        var n=Integer.parseInt(k)+1;
+        name=name.substr(0,p)+"["+n+"]";
+    }
+    else
+    {
+        name+="[0]";
+    }
+    return name;
 }
 function context_load0(name)
 {
@@ -245,7 +342,7 @@ function context_make_prefix2(level)
     else if(level<100)prefix+=""+level;
     else
     {
-        console.log("ERROR: context_make_prefix2() -- context_sublevel="+level);
+        console.log("ERROR: context_make_prefix2(level="+level+") -- context_sublevel="+level);
     }
     prefix+="_";
     return prefix;
@@ -260,7 +357,7 @@ function context_cleanup()
             var level=parseInt(prefix.substr(1,2));
             if(level>context_sublevel)
             {
-                //console.log("~cleaning "+main_handler.main_context.container[i].filename);
+                console.log("~cleaning "+main_handler.main_context.container[i].filename);
                 main_handler.main_context.container[i].filename="";
                 main_handler.main_context.container[i].filedata="";
             }

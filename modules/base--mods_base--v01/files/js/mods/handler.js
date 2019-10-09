@@ -14,6 +14,7 @@ function Handler(element)
     //this.last_event_module="";
     //this.last_event_context="";
 
+    //sys requests
 	this.onClick0=function(type,evt)
     {
         httpSendPostMessage("sys/index.php","site="+site+"&lang="+lang+"&"+evt,receive_message,this,type);
@@ -23,21 +24,22 @@ function Handler(element)
         //pagecount++;
         httpSendPostMessage("sys/index.php","site="+site+"&lang="+lang+"&"+evt,receive_message,this,type);
     }
+    //load txt files
     this.loadText0=function(type,content)
     {
+        console.log("loadText0: "+content+" (type="+type+")");
         httpSendGetMessage(baseurl+"content/"+lang+"/"+content+".txt",receive_message,this,type);
     }
     this.loadText=function(type,content)
     {
         //pagecount++;
+        console.log("loadText: "+content+" (type="+type+")");
         httpSendGetMessage(baseurl+"content/"+lang+"/"+content+".txt",receive_message,this,type);
     }
-    /*
-    this.loadContent=function(type,module,content)
+    this.loadModuleText=function(type,module,filename)
     {
-        httpSendGetMessage(baseurl+"content/"+lang+"/"+module+"/"+content+".txt",receive_message,this,type);
+        httpSendGetMessage(baseurl+"content/"+lang+"/"+module+"/"+filename+".txt",receive_message,this,type);
     }
-    */
 	this.onEvent=function(type0,evt)
     {
         //console.log("this.onEvent() -- "+type0+" -- "+evt);
@@ -92,6 +94,16 @@ function Handler(element)
                 print_reply(this,document.getElementById("placeholder").className,evt);
                 document.getElementById("placeholder").parentNode.removeChild(document.getElementById("placeholder"));
                 break;
+            case "error_top":
+                var msg=select_error_lines(evt,context);
+                print_reply(this,document.getElementById("placeholder").className,msg);
+                document.getElementById("placeholder").parentNode.removeChild(document.getElementById("placeholder"));
+                break;
+            case "error_std":
+                var d=document.getElementById("error_info_box");
+                var msg=select_error_lines(evt,context);
+                if(d)d.innerHTML="<div style='font-family:arial;'>"+msg+"<div>";
+                break;
             case "fill_form":
                 handler_run_std(this,module,evt,type,context,"mform",handler_fill_form);
                 break;
@@ -129,23 +141,79 @@ function Handler(element)
             default:
                 console.log("Handler.onEvent()<br>unknown event ("+type+").");
         }
-        //dataevent_run();
     }
     this.setup=function(s)
     {
         alert("setup");
     }
 }
+function select_error_lines(evt,context)
+{
+    var j=0;
+    var msg="";
+    var e=evt.split("\n");
+    var c=context.split(",");
+    for(var i=0;i<e.length;i++)
+    {
+        var k=e[i].indexOf(":");
+        if(c[0]==e[i].substr(0,k))
+        {
+            var s=e[i].substr(k+1);
+            if(s.charAt(0)=="[" && c.length>1)
+            {
+                m=s.indexOf("]")-1;
+                console.log(s.substr(1,m));
+                if(c[1]==s.substr(1,m))
+                {
+                    if(j>0)msg+="<br>";
+                    if(e[i].charAt(k+1)=="-")
+                    {
+                        if(j>0)msg+="<span style='font-size:11pt;'><i>"+e[i].substr(k+2)+"</i></span>";
+                        else msg+=""+e[i].substr(k+2)+"";
+                    }
+                    else if(e[i].charAt(k+1)=="+")msg+="<span style='font-size:14pt;color:#FF3300;'><b>"+e[i].substr(k+2)+"</b></span>";
+                    else msg+=""+e[i].substr(k+1)+"";
+                    j++;
+                }
+            }
+            else
+            {
+                if(j>0)msg+="<br>";
+                if(e[i].charAt(k+1)=="-")
+                {
+                    if(j>0)msg+="<span style='font-size:11pt;'><i>"+e[i].substr(k+2)+"</i></span>";
+                    else msg+=""+e[i].substr(k+2)+"";
+                }
+                else if(e[i].charAt(k+1)=="+")msg+="<span style='font-size:14pt;color:#FF3300;'><b>"+e[i].substr(k+2)+"</b></span>";
+                else msg+=""+e[i].substr(k+1)+"";
+                j++;
+            }
+        }
+    }
+    if(msg=="")
+    {
+        msg=evt;
+    }
+    return msg;
+}
 function handler_fill_form(handler,module,evt,type,context,data,part)
 {
     //fill_form(module,evt,type,context,data);
     //console.log("fill: "+module);
-    fill_form_i(module,part[1],type,context,data,true);
+    for(var i=1;i<part.length;i++)
+    {
+        fill_form_i(module,part[i],type,context,data,true);
+        fill_form_s(handler,module,part[i],type,context,data,true);
+    }
 }
 function handler_fill_delform(handler,module,evt,type,context,data,part)
 {
     //console.log("fill: "+module);
-    fill_form_i(module,part[1],type,context,data,false);
+    for(var i=1;i<part.length;i++)
+    {
+        fill_form_i(module,part[i],type,context,data,false);
+        fill_form_s(handler,module,part[i],type,context,data,true);
+    }
 }
 function handler_fill_fkeys(handler,module,evt,type,context,data,part)
 {
@@ -214,9 +282,16 @@ function handler_memshow(handler,module,evt,type,context,data,part)
 {
     if(data=="" || part[1]==data)
     {
-        document.getElementById("memdiv").style.visibility="visible";
-        document.getElementById("prediv").style.visibility="hidden";
-        document.getElementById("prediv").style.height="3px";
+        var m=document.getElementById("memdiv");
+        if(m)m.style.visibility="visible";
+        var p=document.getElementById("prediv");
+        if(p)
+        {
+            p.style.visibility="hidden";
+            p.style.height="3px";
+        }
+        if(!m)console.log("handler.js: handler_memshow: memdiv missing");
+        if(!p)console.log("handler.js: handler_memshow: prediv missing");
     }
     else
     {
@@ -231,7 +306,6 @@ function handler_goto_page(handler,module,evt,type,context,data,part)
 }
 function handler_reply_page(handler,module,evt,type,context,data,part)
 {
-    //console.log(">> "+typeof domel[handler.dom_element_name]);
     if(typeof domel[handler.dom_element_name].vars_context == 'object')
     {
         var vars=new file_storage();
@@ -244,7 +318,7 @@ function handler_reply_page(handler,module,evt,type,context,data,part)
         //domel[handler.dom_element_name].vars_context.print();
         //load_page(module+"_"+context);
     }
-    main_handler.onEvent("page",module+"_"+context);
+    main_handler.onEvent("page",module+"/"+context);
 }
 function handler_mods_load(handler,module,evt,type,context,data,part)
 {
@@ -252,17 +326,6 @@ function handler_mods_load(handler,module,evt,type,context,data,part)
 }
 function handler_reply(handler,module,evt,type,context,data,part)
 {
-    /*
-    if(typeof domel[handler.dom_element_name].object.title == 'undefined')var elem=domel[handler.dom_element_name].object.box;
-    else var elem=domel[handler.dom_element_name].object.title;
-
-    var d=document.createElement("div");
-    d.id="reply_"+Math.random();
-    d.className="serverinfobox";
-    d.innerHTML="OK";
-    d.innerHTML+="<div style='float:right;'><a href='JavaScript:document.getElementById(\""+d.id+"\").parentNode.removeChild(document.getElementById(\""+d.id+"\"));'>[x]</a></div>";
-    elem.insertBefore(d,elem.firstChild);
-    */
     print_reply(handler,"serverinfobox","OK");
 }
 function print_reply(handler,stylename,message)
@@ -277,8 +340,12 @@ function print_reply(handler,stylename,message)
     d.innerHTML+="<div style='float:right;'><a href='JavaScript:document.getElementById(\""+d.id+"\").parentNode.removeChild(document.getElementById(\""+d.id+"\"));'>[x]</a></div>";
     elem.insertBefore(d,elem.firstChild);
     
-    //console.log("scroll"+domel[handler.dom_element_name]);
     domel[handler.dom_element_name].scroll(0,0);
+}
+function print_reply2(handler,stylename,message)
+{
+    var d=document.getElementById("placeholder");
+    if(d)d.innerHTML=message;
 }
 function print_reply_placeholder(handler,stylename,message)
 {
@@ -325,8 +392,8 @@ function handler_handle_search_results(handler,module,evt,type,context,data,part
     var listname=a[1];
     var dcontext=a[2];
     
-    var navb=global_file_storage.load_text(module+"_"+listname+"_nav");
-    var item=global_file_storage.load_text(module+"_"+listname+"_item");
+    var navb=global_file_storage.load_text(module+"/"+listname+"_nav");
+    var item=global_file_storage.load_text(module+"/"+listname+"_item");
 
     var parser=new varparser();
     var vars=new file_storage();
@@ -363,43 +430,19 @@ function handler_handle_search_results(handler,module,evt,type,context,data,part
     }
     output+=vars.load("$end");
     if(document.getElementById("dcontent_"+dcontext+"2"))
-        document.getElementById("dcontent_"+dcontext+"2").innerHTML=output;
-}
-function handler_handle_search_results_comments(handler,module,evt,type,context,data,part)
-{
-    var a=(data+",,").split(",");
-    var formular=a[0];
-    var listname=a[1];
-    var dcontext=a[2];
-    
-    var navb=global_file_storage.load_text(module+"_"+listname+"_nav");
-    var item=global_file_storage.load_text(module+"_"+listname+"_item");
-
-    var parser=new varparser();
-    var vars=new file_storage();
-    parse_response(part[1],vars);
-    
-    parser.setup();
-    parser.parse2(navb,vars);
-    new results_nav_wrapper(document.getElementById("dcontent_"+dcontext+"1"),gstyle,null,formular).setup_data(vars,0);
-    new results_nav_wrapper(document.getElementById("dcontent_"+dcontext+"3"),gstyle,null,formular).setup_data(vars,1);
-
-    fill_form_i(module,part[1],type,context,formular);
-
-    document.getElementById("dcontent_"+dcontext+"2").innerHTML="";
-    for(var i=2;i<part.length;i++)
     {
-        vars.reset();
-        parse_response(part[1],vars);
-        parse_response(part[i],vars);
-        
-        vars.store("comment_text",vars.load("comment_text").replace(/\n/g,"<br>"));
-        vars.store("post_time",blog_make_timestr(vars.load("post_time")));
-        
-        parser.dfa.reset();
-        parser.parse2(item,vars);
-        //vars.print();
-        document.getElementById("dcontent_"+dcontext+"2").innerHTML+=vars.load("$text");
+        document.getElementById("dcontent_"+dcontext+"2").innerHTML=output;
+        //gray background
+        if(module!="inseP")document.getElementById("dcontent_"+dcontext+"2").style.backgroundColor="#CCCCCC";
+        //multi column layout
+        if(module=="inseP")
+        {
+            document.getElementById("dcontent_"+dcontext+"2").style.columns="460px 3";
+            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleStyle="dashed";
+            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleColor="#CCCCAA";
+            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleWidth="2px";
+            document.getElementById("dcontent_"+dcontext+"2").style.columnGap="5px";
+        }
     }
 }
 function blog_make_timestr(numtime)
@@ -415,9 +458,159 @@ function blog_make_timestr(numtime)
     var s=(a[1]-h*10000-m*100);
     return D+"."+M+"."+Y+" (um "+h+":"+m+" Uhr)";
 }
+function fill_form_s(handler,module,parti,type,context,formular,unused)
+{
+    if(parti=="")
+    {
+        run_module_error_handling(module,"[E200]",handler,"[E200]|mising data.",type,context,formular,"","");
+        return;
+    }
+    if(parti.substr(0,11)=="base64data:")
+    {
+        var f=parti.substr(11).split(",");
+        for(var i=0;i<f.length;i++)
+        {
+            var name=get_name(f[i]);
+            var value=get_value(f[i]);
+            var o=document.getElementById("output");
+            if(o)
+            {
+                o.innerHTML=o.innerHTML.replace(new RegExp("§"+name,"gim"),value);
+                o.style.visibility="visible";
+            }
+            else
+            {
+                replace_in_tree(module,e_mbox.object.box,name,value);
+                replace_in_document(module,name,value);
+            }
+        }
+    }
+    else if(parti.substr(0,6)=="plain:")
+    {
+        var f=parti.substr(6).split(",");
+        for(var i=0;i<f.length;i++)
+        {
+            var name=get_name(f[i]);
+            var value=get_value_plain(f[i]);
+        }
+    }
+    else
+    {
+        console.log(module+"::fill_form_s() - unknown parti: "+parti);
+    }
+}
+function replace_in_tree(module,o,name,value)
+{
+    if(name=="GALLERY_ITEM" && o.tagName=="DIV" && (o.id=="main_gallery" || o.id=="mini_gallery"))
+    {
+        if(o.id=="main_gallery")
+        {
+            var a=value.split(",");
+            var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[2]+"&comm="+a[3]+"_thumbnail&size="+256+"&"+a[4]+"="+a[0];
+            var urld=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[2]+"&comm="+a[3]+"_download&"+a[4]+"="+a[0];
+            var p=document.createElement("div");
+            p.style.float="left";
+            p.innerHTML="<table style='border-spacing:0px;'><tr><td style='height:256px;vertical-align:middle;'><a href='"+urld+"' target='_blank'><img src='"+url+"' style='margin:2px;' valign='bottom'></a></td></tr></table>";
+            o.appendChild(p);
+        }
+        if(o.id=="mini_gallery")
+        {
+            var a=value.split(",");
+            var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[2]+"&comm="+a[3]+"_thumbnail&size="+32+"&"+a[4]+"="+a[0];
+            var p=document.createElement("div");
+            p.style.float="left";
+            p.innerHTML="<table style='border-spacing:0px;'><tr><td style='height:32px;vertical-align:middle;'><img src='"+url+"' style='margin:2px;' valign='bottom'></td></tr></table>";
+            o.appendChild(p);
+        }
+    }
+    else if(o.children.length>0)
+    {
+        for(var i=0;i<o.children.length;i++)
+        {
+            replace_in_tree(module,o.children[i],name,value);
+        }
+    }
+    else if(o.tagName=="DIV" || o.tagName=="SPAN" || o.tagName=="B" || o.tagName=="I" || o.tagName=="U" || o.tagName=="P" || o.tagName=="PRE" || o.tagName=="CODE")
+    {
+        var oldHTML=o.innerHTML;
+        var newHTML=oldHTML.replace(new RegExp("§"+name,"gim"),value);
+        if(newHTML!=oldHTML)
+        {
+            o.innerHTML=newHTML;
+            o.style.visibility="visible";
+        }
+    }
+    else if(o.tagName=="IMG")
+    {
+        if(o.id.substr(0,4)=="sys_")
+        {
+            var a=o.id.split("_");
+            if(a[1]=="download" && a[4]==name)
+            {
+                var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[2]+"&comm="+a[3]+"_download&"+name+"="+value;
+                o.setAttribute("src",url);
+            }
+            if(a[1]=="thumbnail" && a[6]==name)
+            {
+                var size=Math.max(a[2],a[3]);
+                var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[4]+"&comm="+a[5]+"_thumbnail&size="+size+"&"+name+"="+value;
+                o.setAttribute("src",url);
+            }
+        }
+    }
+    else
+    {
+        //o.innerHTML=o.innerHTML.replace(new RegExp("§"+name,"gim"),value);
+    }
+}
+function replace_in_document(module,name,value)
+{
+    var links=document.getElementsByTagName("A");
+    for(var i=0;i<links.length;i++)
+    {
+        var o=links[i];
+        if(o.id.substr(0,4)=="sys_")
+        {
+            var a=o.id.split("_");
+            if(a[1]=="download" && a[4]==name)
+            {
+                var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[2]+"&comm="+a[3]+"_download&"+name+"="+value;
+                o.setAttribute("href",url);
+            }
+        }
+    }
+}
+function prepare_fill_data(data)
+{
+    if(data && data!="" && typeof data === 'string')
+    {
+        var vars=new file_storage();
+        //console.log(data);
+        var d=data.split("|");
+        for(var i=0;i<d.length;i++)
+        {
+            //console.log(d[i]);
+            var k=(d[i]+"").search("=");
+            if(k!=-1)
+            {
+                var name=d[i].substr(0,k);
+                var value=d[i].substr(k+1);
+                vars.store("$"+name,value);
+                //console.log(name+" = "+value);
+            }
+        }
+        domel[main_handler.dom_element_name].vars_context=vars;
+        domel[main_handler.dom_element_name].vars_context.store("$mode","fill");
+        domel[main_handler.dom_element_name].vars_context.print();
+    }
+}
 function fill_form_i(module,parti,type,context,formular,do_enable_fields)
 {
-    if(!document.forms.namedItem(formular))return;
+    if(!document.forms.namedItem(formular))
+    {
+        //console.log("missing form");
+        return;
+    }
     if(parti.substr(0,11)=="base64data:")
     {
         var f=parti.substr(11).split(",");
@@ -484,7 +677,7 @@ function handler_run_std2(handler,module,evt,type,context,data,func,level)
     if(typeof domel[handler.dom_element_name].object.title == 'undefined')var elem=domel[handler.dom_element_name].object.box;
     else var elem=domel[handler.dom_element_name].object.title;
     
-    var part=evt.split("|");//console.log("-"+part[0]+"-");
+    var part=evt.split("|");
     switch(part[0])
     {
         case "[OK]":
@@ -496,19 +689,15 @@ function handler_run_std2(handler,module,evt,type,context,data,func,level)
             }
             break;
         case "[E100]"://system down.
-            console.log(module+"::Error: "+type+": "+evt);
             new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
         case "[E101]"://unknown area.
-            console.log(module+"::Error: "+type+": "+evt);
             new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
         case "[E103]"://no_data.
-            console.log(module+"::Error: "+type+": "+evt);
             new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
         case "[E104]"://unknown command.
-            console.log(module+"::Error: "+type+": "+evt);
             new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
         case "[E105]"://no_login
@@ -516,7 +705,6 @@ function handler_run_std2(handler,module,evt,type,context,data,func,level)
             {
                 handler.gotopage=currentpage;
                 handler.gotodata=data;
-                //console.log("P "+currentpage+" "+data);
                 mods_user_load("login");
             }
             else if(level=="public")//ignore no-login, if level is public
@@ -529,101 +717,142 @@ function handler_run_std2(handler,module,evt,type,context,data,func,level)
             }
             break;
         case "[E106]"://no admin.
-            console.log(module+"::Error: "+type+": "+evt);
-            new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
-            break;
-        case "[E107]"://upload_err.
-            console.log(module+"::Error: "+type+": "+evt);
             new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
         case "[E108]"://not_allowed.
             mods_user_load("noadmin");
-            //console.log(module+"::Error: "+type+": "+evt);
-            //new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
             break;
+        //case "[E401]":
+        //case "[E402]":
         case "[E109]"://sql error.
-            console.log(module+"::Error: "+type+": "+evt);
-            new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
-            break;
-        case "[E202]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_no_email_verify");
-            break;
-        case "[E203]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_max_flogin");
-            break;
-        case "[E204]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_no_email");
-            break;
-        case "[E205]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_agbs_not_checked");
-            break;
-        case "[E206]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_txt_short_pass");
-            break;
-        case "[E207]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_txt_email_diff");
-            break;
-        case "[E208]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_txt_pass_diff");
-            break;
-        case "[E209]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_txt_false_pass");
-            break;
-        case "[E211]":
-            var d=document.createElement("div");
-            d.id="placeholder";
-            d.className="servererrorbox";
-            d.innerHTML="Error: "+evt;
-            elem.insertBefore(d,elem.firstChild);
-            handler.loadText("text","user_wrong_email_verify");
+            if(part.length>=8)
+            {
+                var e="";
+                if(part[6]=="")part[6]="UNKNOWN ERROR!";
+                e+="<div id='error_info_box' style='margin:10px;padding:5px;background-color:#FFDDAA;border-radius:5px;'>"+part[6]+"</div>";
+                e+="<a href=\"JavaScript:toggle_box('main_error_details_box')\" style='font-size:11pt;'>error details&#x2b07;</a>";
+                e+="<div id=\"main_error_details_box\" style='font-size:11pt;line-height:20px;display:none;'>";
+                e+="Error Code: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[0]+"</span><br>";
+                e+="Error Detail: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[1]+"</span><br>";
+                e+="Module: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+module+"</span><br>";
+                e+="Task: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[2]+"</span><br>";
+                e+="Database: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[3]+"</span><br>";
+                e+="Command: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[4]+"</span><br>";
+                e+="Table: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[5]+"</span><br>";
+                //e+="Fehler-Info: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[6]+"</span><br>";
+                //e+="Zusatz-Info: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[7]+"</span><br>";
+                if(part.length>=9)e+="SQL-Message:<br><span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[8]+"</span>";
+                e+="</div>";
+                var box1=new sysmod_box("Error Message:<hr>"+e);
+                if(part[7]!="")handler.loadModuleText("error_std|"+part[1],module,part[7]);
+            }
+            else
+            {
+                console.log(module+"::Error: "+type+": "+evt);
+                new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
+            }
             break;
         default:
-            console.log(module+"::Error: "+type+": "+evt);
-            new sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
+            run_module_error_handling(module,part[0],handler,evt,type,context,data,func,level);
     }
     return false;
 }
-
+function run_module_error_handling(module,part0,handler,evt,type,context,data,func,level)
+{
+    if(typeof window["mods_"+module+"_perror"] == 'function')
+    {
+        if(!window["mods_"+module+"_perror"](part0,handler,evt,type,context,data,func,level))
+        {
+            run_module_error_handling_default(module,part0,handler,evt,type,context,data,func,level);
+        }
+    }
+    else
+    {
+        run_module_error_handling_default(module,part0,handler,evt,type,context,data,func,level);
+    }
+}
+function run_module_error_handling_default(module,part0,handler,evt,type,context,data,func,level)
+{
+    if(part0.substr(0,3)=="[E4")
+    {
+        var err2="";
+        var e=evt.split("|");
+        if(e.length>2)err2=e[2];
+        default_perror_std_3xx(part0,err2,handler,evt,module);
+    }
+    else sysmod_box(module+"::Error: "+type+":<hr>Fehlermeldung:<br>"+evt);
+}
+function default_perror_std(err,err2,handler,evt,module)
+{
+    var e="";
+    e+="<div id='error_info_box' style='margin:10px;padding:5px;background-color:#FFDDAA;border-radius:5px;'>Module Error "+err+"</div>";
+    e+="<a href=\"JavaScript:toggle_box('main_error_details_box')\" style='font-size:11pt;'>error details&#x2b07;</a>";
+    e+="<div id=\"main_error_details_box\" style='font-size:11pt;line-height:20px;display:none;'>";
+    e+="Error Code: <span style='background-color:#FFFFAA;border:solid 1px #FFAAAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+err+"</span><br>";
+    //e+="Error Info: <span style='background-color:#DDDDDD;'><i>"+evt+"</i></span><br>";
+    
+    var s=evt.split("|");
+    if(s.length>1)e+="Error Detail: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'><i>"+s[1]+"</i></span><br>";
+    if(s.length>2)e+="Error Token: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'><i>"+s[2]+"</i></span><br>";
+    
+    e+="Module: <span style='background-color:#FFFFAA;border:solid 1px #FFAAAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+module+"</span><br>";
+    e+="</div>";
+    var box1=new sysmod_box("Error Message:<hr>"+e);
+    handler.loadModuleText("error_std|"+err+","+err2,module,"module_errors");
+}
+function default_perror_top(err,err2,handler,evt,module)
+{
+    if(typeof domel[handler.dom_element_name].object.title == 'undefined')var elem=domel[handler.dom_element_name].object.box;
+    else var elem=domel[handler.dom_element_name].object.title;
+    var d=document.createElement("div");
+    d.id="placeholder";
+    d.className="servererrorbox";
+    d.innerHTML="Error: "+evt;
+    elem.insertBefore(d,elem.firstChild);
+    handler.loadText("error_top|"+err+","+err2,module+"/module_errors");
+}
+function default_perror_std_3xx(err,err2,handler,evt,module)
+{
+    var part=evt.split("|");
+    if(part.length>=8)
+    {
+        var e="";
+        if(part[6]=="")part[6]="UNKNOWN ERROR!";
+        e+="<div id='error_info_box' style='margin:10px;padding:5px;background-color:#FFDDAA;border-radius:5px;'>"+part[6]+"</div>";
+        e+="<a href=\"JavaScript:toggle_box('main_error_details_box')\" style='font-size:11pt;'>error details&#x2b07;</a>";
+        e+="<div id=\"main_error_details_box\" style='font-size:11pt;line-height:20px;display:none;'>";
+        e+="Error Code: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[0]+"</span><br>";
+        e+="Error Detail: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[1]+"</span><br>";
+        e+="Module: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+module+"</span><br>";
+        e+="Task: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[2]+"</span><br>";
+        e+="Database: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[3]+"</span><br>";
+        e+="Command: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[4]+"</span><br>";
+        e+="Table: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[5]+"</span><br>";
+        //e+="Fehler-Info: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[6]+"</span><br>";
+        //e+="Zusatz-Info: <span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[7]+"</span><br>";
+        if(part.length>=9)e+="SQL-Message:<br><span style='background-color:#FFFFAA;border:solid 1px #FFDDAA;border-radius:5px;'>"+part[8]+"</span>";
+        e+="</div>";
+        var box1=new sysmod_box("Error Message:<hr>"+e);
+        handler.loadModuleText("error_std|"+part[0],module,"module_errors");
+    }
+    else
+    {
+        default_perror_std(err,err2,handler,evt,module);
+    }
+}
+function toggle_box(box_id)
+{
+    var box=document.getElementById(box_id);
+    if(box)
+    {
+        if(box.style.display!='block')box.style.display='block';
+        else box.style.display='none';
+    }
+    else
+    {
+        console.log("invalid toggle box id box_id.");
+    }
+}
 //(1)---------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 function find_ch(str,ch)

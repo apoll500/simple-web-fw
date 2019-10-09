@@ -53,9 +53,9 @@ function navbar_simple(pdiv,wrap)
     
     this.onResize=function()
     {
-        if(this.layout=="logo_layout")
+        if(true)//this.layout=="logo_layout")
         {
-            if(screenx<580)
+            if(screenx<580 && this.layout=="logo_layout")
             {
                 var o="";
                 var lines=this.content.split("\n");

@@ -60,6 +60,17 @@ function file_storage()
         }
         return false;
     }
+    this.remove_prefixed=function(filename_prefix)
+    {
+        for(var i=0;i<this.container.length;i++)
+        {
+            if(this.container[i].filename.substr(0,filename_prefix.length)==filename_prefix)
+            {
+                this.container[i].filename="";
+                this.container[i].filedata="";
+            }
+        }
+    }
     this.load=function(filename)
     {
         for(var i=0;i<this.container.length;i++)

@@ -147,6 +147,10 @@ function run_infoline($line)
             $rest=substr($rest,$p+1);
             if(modify_field($current_dbnme,$current_tabname,$field,$rest))echo_ok();else echo_err();
             break;
+        case "UNIQUE":
+            $rest=substr($line,$p+1);
+            if(set_field_unique($current_dbnme,$current_tabname,$rest))echo_ok();else echo_err();
+            break;
         case "DROP_PRIMARY_KEY":
             if(drop_primary_key($current_dbnme,$current_tabname))echo_ok();else echo_err();
             break;
@@ -155,6 +159,13 @@ function run_infoline($line)
             $fiefds=explode(',',$rest);
             if(add_primary_key_array($current_dbnme,$current_tabname,$fiefds,$current_table_keyisset))echo_ok();else echo_err();
             break;
+        case "FOREIGN_KEY":
+            $rest=substr($line,$p+1);
+            $a=explode(',',$rest);
+            if(add_foreign_key($current_dbnme,$current_tabname,$a[0],$a[1],$a[2]))echo_ok();else echo_err();
+            break;
+		//default:
+		//	echo "ignoring command '$command'.<br>";
     }
 }
 
@@ -257,6 +268,22 @@ function modify_field($dbname,$tabname,$fiefdname,$fieldsetup)
     return $retval;
 }
 
+function set_field_unique($dbname,$tabname,$rest)
+{
+    global $DB;
+    $tabname=$DB[$dbname.".".$tabname];
+    $dbname=$DB[$dbname];
+
+    $serv=connectdb($dbname);
+    echo "ALTER TABLE `$tabname` ADD UNIQUE ($rest)";
+    $q0=new SendDB($serv,"ALTER TABLE `$tabname` ADD UNIQUE ($rest)","",array());
+    if($q0->check())$retval=true;
+    else $retval=false;
+    $q0->close();
+    closedb($serv);
+    return $retval;
+}
+
 function add_field_ex($dbname,$tabname,$fiefdname,$fieldtype,$fieldsize,$notnull,$stdvalue,$attribute,$extras,$comment)
 {
     global $DB;
@@ -292,6 +319,30 @@ function add_primary_key_array($dbname,$tabname,$fiefds,$drop)
     if($drop)$d="DROP PRIMARY KEY,";else $d="";
     echo "ALTER TABLE `$tabname` $d"."ADD PRIMARY KEY ($a)";
     $q0=new SendDB($serv,"ALTER TABLE `$tabname` $d"."ADD PRIMARY KEY ($a)","",array());
+    if($q0->check())$retval=true;
+    else $retval=false;
+    $q0->close();
+    closedb($serv);
+    return $retval;
+}
+function add_foreign_key($dbname,$tabname,$field,$ftab,$ffld)
+{
+    global $DB;
+    $a="";
+    for($i=0;$i<count($fiefds);$i++)
+    {
+        if($i>0)$a=$a.",";
+        $a=$a."`".substr(strstr($DB[$dbname.".".$tabname.".".$fiefds[$i]],"."),1)."`";
+    }
+    $field=substr(strstr($DB[$dbname.".".$tabname.".".$field],"."),1);
+    $tabname=$DB[$dbname.".".$tabname];
+    $ffld=substr(strstr($DB[$dbname.".".$ftab.".".$ffld],"."),1);
+    $ftab=$DB[$dbname.".".$ftab];
+    $dbname=$DB[$dbname];
+    
+    $serv=connectdb($dbname);
+    echo "ALTER TABLE `$tabname` ADD FOREIGN KEY ($field) REFERENCES $ftab($ffld)";
+    $q0=new SendDB($serv,"ALTER TABLE `$tabname` ADD FOREIGN KEY ($field) REFERENCES $ftab($ffld)","",array());
     if($q0->check())$retval=true;
     else $retval=false;
     $q0->close();

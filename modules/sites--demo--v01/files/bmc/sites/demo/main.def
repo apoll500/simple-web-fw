@@ -22,6 +22,8 @@ DEF MAIN:WMC
 
 DEF site:MODULE
 {
+    THE_SITE_ID="123";
+    
     INCLUDE="../templates/page_common.def";
     INCLUDE="../templates/js_common.def";
     INCLUDE="pages/home.def";

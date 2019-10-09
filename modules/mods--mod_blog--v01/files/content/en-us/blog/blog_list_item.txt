@@ -1,0 +1,27 @@
+
+$dinfo="Kommentar vom ";
+$text="
+<table border='0'>
+    
+    <tr>
+        <td rowspan='3' align='center' width='66px' valign='top'>
+            <img src='images/bloguser_gray.png'><br>
+            <b>@users_username</b>
+        </td>
+        <td>
+            <b>@comment_title</b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @comment_text
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>
+            <i>$dinfo @post_time [User: @users_username]</i>
+        </td>
+    </tr>
+</table>
+<hr>
+";

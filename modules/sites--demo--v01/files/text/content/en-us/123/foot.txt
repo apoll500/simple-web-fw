@@ -1,0 +1,26 @@
+BEGIN_COLUMN
+Contact|JavaScript:load_page('contact');
+Imprint|JavaScript:load_page('impre');
+Links|JavaScript:load_page('listall');
+Bugs|JavaScript:load_page('bugs');
+
+COPYINFO
+END_COLUMN
+BEGIN_COLUMN
+Language:
+de-at|JavaScript:setlang('de-at');
+en-us|JavaScript:setlang('en-us');
+
+Data Protection:
+GDPR Info|JavaScript:load_page('datainfo');
+
+END_COLUMN
+BEGIN_COLUMN
+Layout/Style:
+Standard-Layout|JavaScript:setgstyle('simple');
+Simplified-Layout|JavaScript:setgstyle('plain');
+Inverse-Colors|JavaScript:setgstyle('inv');
+
+Text-Version:
+text/|JavaScript:setgstyle('text');
+END_COLUMN

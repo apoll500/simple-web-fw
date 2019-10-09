@@ -144,6 +144,19 @@ function varparser()
                 }
                 valu="<div style='text-align:right;'>"+valu+"</div>";
             }
+            else if(a[2]=="thumbnail")
+            {
+                var size=Math.max(a[3],a[4]);
+                var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[5]+"&comm="+a[6]+"_thumbnail&size="+size+"&"+name+"="+valu;
+                var urld=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[5]+"&comm="+a[6]+"_download&"+name+"="+valu;
+                valu='<div style="margin:3px;width:'+size+'px;height:'+size+'px;"><table><tr><td style="width:'+size+'px;height:'+size+'px;vertical-align:middle;text-align:center;"><a href="'+urld+'" target="_blank"><img src="'+url+'" style="margin-top:-3px;margin-left:-3px;max-width:'+size+'px;max-height:'+size+'px;box-shadow:2px 2px 3px 0px rgb(100,100,100);"></a></td></tr></table></div>';
+            }
+            else if(a[2]=="gallery" && valu!="")
+            {
+                var size=Math.max(a[3],a[4]);
+                var url=baseurl+"sys/index.php?site="+site+"&lang="+lang+"&area="+a[5]+"&comm="+a[6]+"_thumbnail&size="+size+"&"+"picid"+"="+valu.split(",")[0];
+                valu='<div style="margin:3px;width:'+size+'px;height:'+size+'px;"><table><tr><td style="width:'+size+'px;height:'+size+'px;vertical-align:middle;text-align:center;"><img src="'+url+'" style="margin-top:-3px;margin-left:-3px;max-width:'+size+'px;max-height:'+size+'px;box-shadow:2px 2px 3px 0px rgb(100,100,100);"></td></tr></table></div>';
+            }
             this.value_accu+=valu;
         }
         else

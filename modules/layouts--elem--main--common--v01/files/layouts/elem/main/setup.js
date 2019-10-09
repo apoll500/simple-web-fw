@@ -165,11 +165,11 @@ function run_standard_setup_main_simple(content_str,element)
     //CENTERING
     if(object.layout=="center")
     {
-        object.d2.align="center";
+        if(object.d2)object.d2.align="center";
     }
     else
     {
-        object.d2.align="left";
+        if(object.d2)object.d2.align="left";
     }
     //
     //CHECK FOR DATA
@@ -235,7 +235,7 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
                     var m=context_load2(context_sublevel-h,"parent_module","");
                     if(m!="")
                     {
-                        var a=global_file_storage.load(baseurl+"content/"+lang+"/"+m+"_show.txt");
+                        var a=global_file_storage.load(baseurl+"content/"+lang+"/"+m+"/show.txt");
                         //console.log("load parent form "+(context_sublevel-h)+": "+m);
                         var a_lines=a.split("\n");
                         var do_print=false;
@@ -264,7 +264,7 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
                 var parent_module=context_load("parent_module","");
                 if(parent_module!="")
                 {
-                    var a=global_file_storage.load(baseurl+"content/"+lang+"/"+parent_module+"_show.txt");
+                    var a=global_file_storage.load(baseurl+"content/"+lang+"/"+parent_module+"/show.txt");
                     var a_lines=a.split("\n");
                     var do_print=false;
                     for(var i=1;i<a_lines.length-1;i++)
@@ -454,6 +454,10 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
             //Input
             if(a[3]=="INPUT")
             {
+                if(a[4]=="file")
+                {
+                    o+="<input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\""+a[12]+"\">";
+                }
                 o+="<input type=\""+a[4]+"\" name=\""+a[6]+"\" value=\""+a[7]+"\" class=\""+a[5]+"\"";
                 if(a[9]!="")o+=" "+a[9]+"=\"mods_"+a[10]+"_run2('"+a[11]+"','"+name_of_current_form+"')\"";
                 if(a[8]!="")o+=" "+a[8];
@@ -486,7 +490,7 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
                         extra+=" disabled";
                         opt_value=opt[i].substr(1);
                     }
-                    else if(opt[i].substr(0,1)=="-")
+                    else if(opt[i].substr(0,1)=="-" && opt[i].substr(1,1)!="[")
                     {
                         opt_value=opt[i].substr(1);
                     }
@@ -494,11 +498,11 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
                     {
                         opt_value=opt[i];
                     }
-                    var pos=opt_value.search(/\[[a-z|0-9|=|'| |.|\-|_]*\]/i);
+                    var pos=opt_value.search(/\[[a-z|0-9|=|'| |.|\-|_|Ö|Ä|Ü|ö|ä|ü]*\]/i);
                     if(pos!=-1)opt_option=opt_value.slice(pos+1,-1);
                     else opt_option="";
 
-                    opt_value=opt_value.replace(/\[[a-z|0-9|=|'| |.|\-|_]*\]/i,"");
+                    opt_value=opt_value.replace(/\[[a-z|0-9|=|'| |.|\-|_|Ö|Ä|Ü|ö|ä|ü]*\]/i,"");
                     opt_text=opt_value;
                     if(opt_option.substr(0,5)=="text=")opt_text=opt_option.slice(6,-1);
                     o+="<option value=\""+opt_value+"\""+extra+">"+opt_text+"</option>";
@@ -528,6 +532,12 @@ function __elements_setup_main_simple_line(o,object,content_box,lines,dosubs)
         {
             o+="<br><br>";
             item_hcount=0;
+        }
+        //GALLERY
+        else if(lines.substr(0,7)=="GALLERY")
+        {
+            a=lines.split("|");
+            o+="<div id='"+a[1]+"' style='padding:2px;overflow:auto;'></div>";
         }
         //ERROR
         else if(lines.substr(0,5)=="ERROR")

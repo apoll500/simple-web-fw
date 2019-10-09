@@ -38,6 +38,31 @@ function elements_setup(content_str,element,style)
     
     element.object.onResize();
     
+    //fill form
+    if(typeof element.vars_context == 'object')
+    {
+        if(element.vars_context.load("$mode")=="fill")
+        {
+            // 1) fill inputs
+            for(var i=0;i<document.forms.length;i++)
+            {
+                for(var j=0;j<document.forms[i].elements.length;j++)
+                {
+                    var value=element.vars_context.get("$"+document.forms[i].elements[j].name);
+                    if(value)document.forms[i].elements[j].value=value;
+                }
+            }
+            // 2) fill §placeholders
+            if(element.object.box)
+                for(var i=0;i<element.vars_context.container.length;i++)
+                {
+                    replace_in_tree("",element.object.box,element.vars_context.container[i].filename.substr(1),element.vars_context.container[i].filedata);
+                }
+            // 3) mark as done
+            element.vars_context.store("$mode","null");
+        }
+    }
+    
     return success;
 }
 function run_standard_setup(content_str,element,style)

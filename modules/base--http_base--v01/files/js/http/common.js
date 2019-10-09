@@ -27,16 +27,17 @@ function httpSendGetMessage(url,callback,element,type)
     filedata=global_file_storage.load(url);
     if(filedata!="")
     {
+        console.log("MEMORY: "+url);
         callback(filedata,element,type);
         return;
     }
+    console.log("HTTP (GET): "+url);
     var original_url=url;
     
     if(url.substr(url.length-4)==".txt" || url.substr(url.length-4)==".wgd")
     {
         url=url+"?r="+Math.random();
     }
-    //console.log(url);
     
     http_begin(url);
     var r=new XMLHttpRequest();
@@ -73,6 +74,7 @@ function httpSendGetMessage(url,callback,element,type)
                     }
                 }
             };
+    //console.log("GET: "+url);
     r.open("GET",url,true);
     r.send(null);
     
@@ -102,16 +104,17 @@ function httpSendPostMessage(url,data,callback,element,type)
     filedata=global_file_storage.load(url+"?"+data);
     if(filedata!="")
     {
+        console.log("MEMORY: "+url+"?"+data);
         callback(filedata,element,type);
         return;
     }
+    console.log("HTTP (POST): "+url+"?"+data);
     var original_data=data;
 
     if(data=="")
     {
         data="r="+Math.random();
     }
-    //console.log(url+" -- "+data);
     
     http_begin(url);
     var r=new XMLHttpRequest();
@@ -148,6 +151,7 @@ function httpSendPostMessage(url,data,callback,element,type)
                     }
                 }
             };
+    //console.log("POST: "+url+"?"+data);
     r.open("POST",url,true);
     r.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     r.send(data);
@@ -208,6 +212,8 @@ function receive_text(text,element,_unused)
     }
     
     element.setup(s);
+    
+    setTimeout(function(){__u_chstyle__check_colors(document.body);},500);
 }
 function receive_message(message,element,type)
 {
@@ -220,6 +226,8 @@ function receive_message(message,element,type)
         if(ch!=-1)s+=ch;
     }
     element.onEvent(type,s);
+    
+    setTimeout(function(){__u_chstyle__check_colors(document.body);},500);
 }
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

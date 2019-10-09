@@ -165,6 +165,7 @@ function load_page_clean(page)
     //console.log(page);
     currentpage=page;
     pagecount++;
+    page=add_site_to_page(page);
     u_load_page(page);
 }
 function load_page_clean_data(page,data)
@@ -174,7 +175,20 @@ function load_page_clean_data(page,data)
     currentpage=page;
     currentdata=data;
     pagecount++;
+    page=add_site_to_page(page);
     u_load_page(page);
+}
+function add_site_to_page(page)
+{
+    if(page.substr(0,5)=="blog_")
+    {
+        page="blog/"+page;
+    }
+    else if(page.search("/")==-1)
+    {
+        page=site+"/"+page;
+    }
+    return page;
 }
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

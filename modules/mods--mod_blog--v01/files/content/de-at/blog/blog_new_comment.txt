@@ -1,0 +1,14 @@
+<a href="JavaScript:load_page('blog')" style="text-decoration:none;color:#3377AA;">Blog</a> /
+<h2 style='margin-bottom:0px;'>Neuer Kommentar</h2>
+HIDE|memdiv|
+FORM|mform|POST|do_create|commentsUser|
+zu Posting <span id="posting_link"></span>
+
+FLD|||INPUT|hidden||blog_token|||
+FLD|stdtitle1|Titel:|INPUT|input|stdinput1|comment_title|||
+NL
+FLD|stdtitle1|Kommentar:|AREA||stdarea1|comment_text|||
+NL
+FLD|||INPUT|submit|stdbutton|b01|speichern||
+ENDFORM
+ENDHIDE|prediv|loading...|

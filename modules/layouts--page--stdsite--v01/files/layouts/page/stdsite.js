@@ -27,6 +27,26 @@ main_loader.load("js/elements/loginbar/loginbar_simple_bw.css");
 //loading element layouts
 main_loader.load("layouts/elem/main/setup.js");
 
+function __u_chstyle__check_colors(m)
+{
+    var col1=m.style.color;
+    var col0=m.style.backgroundColor;
+    if(gstyle=="inv")
+    {
+        m.style.color="#FFFFFF";
+        m.style.backgroundColor="#000000";
+    }
+    else if(gstyle=="plain")
+    {
+        m.style.color="#000000";
+        m.style.backgroundColor="#FFFFFF";
+    }
+    for(var i=0;i<m.children.length;i++)
+    {
+        __u_chstyle__check_colors(m.children[i]);
+    }
+}
+
 function __update()
 {
     if(gstyle=="inv")
@@ -73,12 +93,12 @@ function __u_load_page(page)
     if(!e_navbar)
     {
         e_navbar=new navbar_wrapper(m,gstyle);
-        e_navbar.load("content/"+lang+"/navbar.txt");
+        e_navbar.load("content/"+lang+"/"+site+"/navbar.txt");
     }
     else
     {
         //Markierung setzen.
-        e_navbar.load("content/"+lang+"/navbar.txt");
+        e_navbar.load("content/"+lang+"/"+site+"/navbar.txt");
     }
     
     if(!e_mbox)
@@ -96,11 +116,16 @@ function __u_load_page(page)
         else console.log("Module "+s[0]+" is missing.");
     }
     */
+    var pname=page;
+    var ppos=page.search("/");
+    if(ppos!=-1)pname=page.substr(ppos+1);
+    
     if(load_module_from_page(page))
     {
     }
-    else if(page.substr(0,5)=="blog_")
+    else if(pname.substr(0,5)=="blog_")
     {
+        page="blog/"+pname;
         if(typeof window["mods_blog_load_clean"] == 'function')window["mods_blog_load_clean"]("load",page);
         else e_mbox.load2(page,"left");
     }
@@ -108,8 +133,8 @@ function __u_load_page(page)
     {
         if(gstyle=="simple")
         {
-            if(page=="home")e_mbox.load2(page,"center");
-            else if(page=="blog")e_mbox.load2(page,"multicol2c");
+            if(page==site+"/home")e_mbox.load2(page,"center");
+            else if(page==site+"/blog")e_mbox.load2(page,"multicol2c");
             else e_mbox.load2(page,"left");
         }
         else if(gstyle=="plain" || gstyle=="inv")
@@ -121,7 +146,7 @@ function __u_load_page(page)
     if(!e_foot)
     {
         e_foot=new foot_wrapper(m,gstyle);
-        e_foot.load("content/"+lang+"/foot.txt");
+        e_foot.load("content/"+lang+"/"+site+"/foot.txt");
     }
 }
 
