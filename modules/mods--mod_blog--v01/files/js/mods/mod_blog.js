@@ -144,4 +144,18 @@ function handler_handle_search_results_comments(handler,module,evt,type,context,
     }
 }
 
+function blog_make_timestr(numtime)
+{
+    var a=numtime.split(".");
+    a[0]=parseInt(a[0]);
+    a[1]=parseInt(a[1]);
+    var Y=Math.floor(a[0]/10000);
+    var M=Math.floor((a[0]-Y*10000)/100);
+    var D=(a[0]-Y*10000-M*100);
+    var h=Math.floor(a[1]/10000);
+    var m=Math.floor((a[1]-h*10000)/100);
+    var s=(a[1]-h*10000-m*100);
+    return D+"."+M+"."+Y+" (um "+h+":"+m+" Uhr)";
+}
+
 main_loader.ready();

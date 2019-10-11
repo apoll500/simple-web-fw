@@ -128,15 +128,12 @@ function Handler(element)
                 break;
             case "memshow":
                 handler_run_std(this,module,evt,type,context,"",handler_memshow);
-                //handler_memshow(this,this.dom_element_name,module,evt,type,context);
                 break;
             case "memshow_admin":
                 handler_run_std(this,module,evt,type,context,"ADMIN",handler_memshow);
-                //handler_memshow_admin(this,this.dom_element_name,module,evt,type,context);
                 break;
             case "memshow_developer":
                 handler_run_std(this,module,evt,type,context,"DEVELOPER",handler_memshow);
-                //handler_memshow_developer(this,this.dom_element_name,module,evt,type,context);
                 break;
             default:
                 console.log("Handler.onEvent()<br>unknown event ("+type+").");
@@ -432,31 +429,16 @@ function handler_handle_search_results(handler,module,evt,type,context,data,part
     if(document.getElementById("dcontent_"+dcontext+"2"))
     {
         document.getElementById("dcontent_"+dcontext+"2").innerHTML=output;
-        //gray background
-        if(module!="inseP")document.getElementById("dcontent_"+dcontext+"2").style.backgroundColor="#CCCCCC";
-        //multi column layout
-        if(module=="inseP")
+        
+        if(typeof window["mods_"+module+"_results_refinement"] == 'function')
         {
-            document.getElementById("dcontent_"+dcontext+"2").style.columns="460px 3";
-            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleStyle="dashed";
-            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleColor="#CCCCAA";
-            document.getElementById("dcontent_"+dcontext+"2").style.columnRuleWidth="2px";
-            document.getElementById("dcontent_"+dcontext+"2").style.columnGap="5px";
+            window["mods_"+module+"_results_refinement"](document.getElementById("dcontent_"+dcontext+"2"));
+        }
+        else
+        {
+            document.getElementById("dcontent_"+dcontext+"2").style.backgroundColor="#CCCCCC";
         }
     }
-}
-function blog_make_timestr(numtime)
-{
-    var a=numtime.split(".");
-    a[0]=parseInt(a[0]);
-    a[1]=parseInt(a[1]);
-    var Y=Math.floor(a[0]/10000);
-    var M=Math.floor((a[0]-Y*10000)/100);
-    var D=(a[0]-Y*10000-M*100);
-    var h=Math.floor(a[1]/10000);
-    var m=Math.floor((a[1]-h*10000)/100);
-    var s=(a[1]-h*10000-m*100);
-    return D+"."+M+"."+Y+" (um "+h+":"+m+" Uhr)";
 }
 function fill_form_s(handler,module,parti,type,context,formular,unused)
 {

@@ -4,10 +4,11 @@ counter=$((1))
 
 pull () {
     printf "\033[%d;2;%d;%d;%dm\033[%d;2;%d;%d;%dm" 38 255 255 200 48 90 180 235
-    echo "                                                                     "
-    printf "\033[1A"
-    echo "[$counter:] $1"
+    printf "                                                                     "
+    printf "\033[0E"
+    printf "[$counter:] $1"
     printf "\033[0m"
+    printf "\n"
     bmsetup pull modules/ $1
     counter=$(($counter+1))
 }
